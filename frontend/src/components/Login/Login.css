@@ -1,0 +1,18 @@
+.login-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.login-container button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-container button:hover {
+    background-color: #1ed760;
+}
