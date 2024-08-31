@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, session, request, jsonify
 from authlib.integrations.flask_client import OAuth
 from flask_cors import CORS
+from config import Config
 import os
 import requests
 
@@ -13,8 +14,8 @@ app.config.from_object('config.Config')
 oauth = OAuth(app)
 spotify = oauth.register(
     name='spotify',
-    client_id="d610110ac6f147a29bd2e59f37183640",
-    client_secret="fc9af4646d264a218adc367fe4944d45",
+    client_id=Config.SPOTIFY_CLIENT_ID,
+    client_secret=Config.SPOTIFY_CLIENT_SECRET,
     access_token_url='https://accounts.spotify.com/api/token',
     authorize_url='https://accounts.spotify.com/authorize',
     authorize_params=None,
