@@ -1,0 +1,57 @@
+/* Genel stil */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.track {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+    border-left: 5px solid #4caf50;
+    border-radius: 4px;
+}
+
+.track h2 {
+    font-size: 1.5em;
+    color: #4caf50;
+}
+
+.track p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 20px 0;
+}
+
+/* Yükleniyor stili */
+.loading {
+    text-align: center;
+    font-size: 1.5em;
+    color: #888;
+}
