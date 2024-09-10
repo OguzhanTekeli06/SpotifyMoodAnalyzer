@@ -8,6 +8,8 @@ import requests
 app = Flask(__name__)
 CORS(app)  # CORS'u etkinleştirme
 
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+
 app.secret_key = os.getenv("SECRET_KEY", "supersecretkey")
 app.config.from_object('config.Config')
 
@@ -20,7 +22,8 @@ spotify = oauth.register(
     authorize_url='https://accounts.spotify.com/authorize',
     authorize_params=None,
     redirect_uri='http://localhost:5000/authorize',
-    client_kwargs={'scope': 'user-read-email user-read-private user-top-read user-read-recently-played'}
+    client_kwargs={'scope': 'user-read-email user-read-private user-top-read user-read-recently-played'},
+    # `state` özelliğini kaldırarak Spotify'ın CSRF korumasını kullanmasını sağlıyoruz.
 )
 
 @app.route('/')
@@ -31,19 +34,34 @@ def home():
 def login():
     return spotify.authorize_redirect(redirect_uri='http://localhost:5000/authorize')
 
+def get_user_data(token):
+    if token:
+        headers = {
+            'Authorization': f'Bearer {token["access_token"]}'
+        }
+        resp = requests.get('https://api.spotify.com/v1/me', headers=headers)
+        if resp.status_code == 200:
+            return resp.json()  # Eğer kullanıcı verileri başarıyla dönerse
+    return None
+
 @app.route('/authorize')
 def authorize():
-    token = spotify.authorize_access_token()
-    session['user'] = spotify.get('https://api.spotify.com/v1/me', token=token).json()
-    session['token'] = token['access_token']
-    return redirect('/dashboard')
+    token = spotify.authorize_access_token()  # Tokeni alıyoruz
+    session['token'] = token  # Tüm token objesini session'a kaydediyoruz
+    user_data = get_user_data(token)  # Kullanıcı verilerini getiriyoruz
+
+    if user_data:
+        session['user'] = user_data  # Kullanıcı verilerini session'a kaydediyoruz
+        return redirect('http://localhost:3000/dashboard')  # Başarılı oturum açma sonrası yönlendirme
+    else:
+        return jsonify({"error": "Failed to get user data"}), 401
 
 @app.route('/dashboard')
 def dashboard():
     user = session.get('user')
     if user:
-        return jsonify(user)
-    return redirect('/')
+        return jsonify(user)  # Kullanıcı verilerini JSON formatında döndürüyoruz
+    return jsonify({"error": "User not logged in"}), 401
 
 @app.route('/recent-tracks-audio-features')
 def recent_tracks_audio_features():
@@ -52,10 +70,10 @@ def recent_tracks_audio_features():
         return redirect('/login')
     
     headers = {
-        'Authorization': f'Bearer {token}'
+        'Authorization': f'Bearer {token["access_token"]}'
     }
 
-    # En son dinlenen şarkıları al
+    # En son dinlenen şarkıları alıyoruz
     recent_tracks_response = requests.get('https://api.spotify.com/v1/me/player/recently-played?limit=10', headers=headers)
     if recent_tracks_response.status_code != 200:
         return jsonify({"error": "Failed to fetch recently played tracks"}), recent_tracks_response.status_code
@@ -63,14 +81,13 @@ def recent_tracks_audio_features():
     recent_tracks = recent_tracks_response.json()
     track_ids = [item['track']['id'] for item in recent_tracks['items']]
 
-    # Müzikal özellikleri al
+    # Müzikal özellikleri alıyoruz
     audio_features_response = requests.get(f'https://api.spotify.com/v1/audio-features?ids={",".join(track_ids)}', headers=headers)
     if audio_features_response.status_code != 200:
         return jsonify({"error": "Failed to fetch audio features"}), audio_features_response.status_code
     
     audio_features = audio_features_response.json()
     return jsonify(audio_features)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
