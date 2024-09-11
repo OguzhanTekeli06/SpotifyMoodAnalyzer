@@ -1,9 +1,15 @@
+import json
 from flask import Flask, redirect, url_for, session, request, jsonify
 from authlib.integrations.flask_client import OAuth
 from flask_cors import CORS
 from config import Config
 import os
 import requests
+import sys
+sys.path.append('C:/Users/ouzte/Desktop/spotifyproject/Backend')
+
+
+
 
 app = Flask(__name__)
 CORS(app)  # CORS'u etkinleştirme
@@ -46,23 +52,60 @@ def get_user_data(token):
 
 @app.route('/authorize')
 def authorize():
-    token = spotify.authorize_access_token()  # Tokeni alıyoruz
+    token = spotify.authorize_access_token()
     session['token'] = token  # Tüm token objesini session'a kaydediyoruz
-    print(f"Access Token: {token}")
-    user_data = get_user_data(token)  # Kullanıcı verilerini getiriyoruz
 
+    user_data = get_user_data(token)
     if user_data:
-        session['user'] = user_data  # Kullanıcı verilerini session'a kaydediyoruz
-        return redirect('http://localhost:3000/dashboard')  # Başarılı oturum açma sonrası yönlendirme
+        session['user'] = user_data
+        response = redirect('http://localhost:3000/dashboard')
+        response.set_cookie('spotify_token', token['access_token'], httponly=False)
+        return response
     else:
         return jsonify({"error": "Failed to get user data"}), 401
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/dashboard')
 def dashboard():
-    user = session.get('user')
-    if user:
-        return jsonify(user)  # Kullanıcı verilerini JSON formatında döndürüyoruz
-    return jsonify({"error": "User not logged in"}), 401
+    auth_header = request.headers.get('Authorization')
+    if auth_header:
+        # "Bearer <token>" formatından token'ı alıyoruz
+        token = auth_header.split(" ")[1]
+        print(f"Backend'de alınan token: {token}")
+
+        # Session'daki token ile karşılaştırıyoruz
+        session_token = session.get('token', {}).get('access_token')
+        if session_token and token == session_token:
+            user = session.get('user')
+            if user:
+                return jsonify(user)  # Kullanıcı verilerini JSON formatında döndürüyoruz
+            return jsonify({"error": "User not logged in"}), 401
+        else:
+            return jsonify({"error": "Invalid token"}), 401
+    else:
+        return jsonify({"error": "Authorization header missing"}), 401
 
 @app.route('/recent-tracks-audio-features')
 def recent_tracks_audio_features():

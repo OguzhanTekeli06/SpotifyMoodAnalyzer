@@ -1,49 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  // useNavigate hook'u ile yönlendirme yapacağız
+import { useNavigate } from 'react-router-dom';
 
+// Cookie'den token'ı alma fonksiyonu
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+};
 
 const Dashboard = () => {
-    const [userData, setUserData] = useState(null);  // Kullanıcı verilerini tutmak için state
-    const navigate = useNavigate();  // useNavigate hook'u ile yönlendirme fonksiyonunu çağırıyoruz
+    const [results, setResults] = useState(null);
+    const navigate = useNavigate();
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/dashboard');
-                console.log(response.data);  // Veriyi konsolda görmek için
-                setUserData(response.data);  // Kullanıcı verilerini state'e kaydet
-            } catch (error) {
-                console.error("Error fetching user data", error);
-            }
-        };
-    
-        fetchUserData();  // API çağrısı: Kullanıcı verileri için
+        // Token'ı cookie'den alıyoruz
+        const tokenFromCookie = getCookie('spotify_token');
+        if (tokenFromCookie) {
+            setToken(tokenFromCookie);
+            console.log("Token bulundu:", tokenFromCookie);
+        } else {
+            console.log("Token bulunamadı");
+        }
     }, []);
-    
 
-    // Yönlendirme işlemi için buton tıklama fonksiyonu
-    const handleButtonClick = () => {
-        navigate('/MoodResults');  // /results sayfasına yönlendir
+    const handleButtonClick = async () => {
+        try {
+            // Spotify API'sinden veri çekiyoruz
+            const response = await axios.get('http://localhost:5000/recent-tracks-audio-features', {
+                headers: { Authorization: `Bearer ${token}` }  // Cookie'den alınan token'ı kullanıyoruz
+            });
+            const audioFeatures = response.data;
+
+            // Modeli çalıştırmak için backend'e POST isteği gönderiyoruz
+            const modelResponse = await axios.post('http://localhost:5000/process-audio-features', audioFeatures);
+       
+            // Sonuçları ResultsPage'e yönlendiriyoruz
+            navigate('/MoodResults', { state: { results: modelResponse.data } });
+        } catch (error) {
+            console.error('Error processing audio features', error);
+        }
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <h2>User Product Information</h2>
-            {userData && userData.product ? (  // Sadece "product" özelliğini kontrol ediyoruz
-                <div>
-                    <p><strong>Product:</strong> {userData.product}</p>  {/* product bilgisi */}
-                </div>
-            ) : (
-                <p>Loading user product information...</p>
-            )}
-
-            {/* Buton ekliyoruz */}
-            <button onClick={handleButtonClick} style={{ marginTop: '20px', padding: '10px 20px', backgroundColor: 'green', color: 'white' }}>
-                Go to Results Page
-            </button>
+        <div>
+            <h1>Dashboard</h1>
+            <button onClick={handleButtonClick}>Process Audio Features and Show Results</button>
         </div>
     );
-}
+};
 
 export default Dashboard;
