@@ -1,6 +1,7 @@
 import json
-import pandas as pd
+import os
 import tensorflow as tf
+import pandas as pd
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
@@ -81,6 +82,9 @@ def train_and_evaluate_model(model, X_train, y_train, X_test, y_test):
     # Modeli eğitiyoruz
     model.fit(X_train, y_train, epochs=50, validation_data=(X_test, y_test), verbose=1, callbacks=[early_stopping])
 
+    model.save_weights('model_weights.h5')
+
+
     # Modeli test verisi üzerinde değerlendiriyoruz
     loss, accuracy = model.evaluate(X_test, y_test)
     print(f'Test Loss: {loss}, Test Accuracy: {accuracy}')
@@ -88,6 +92,20 @@ def train_and_evaluate_model(model, X_train, y_train, X_test, y_test):
     # Tahminler
     predictions = model.predict(X_test)
     print(predictions[:5])  # İlk 5 tahmini yazdırıyoruz
+
+
+
+# Ağırlıkları yükleyip tahmin yapma fonksiyonu                   sonradan eklendi
+
+def load_and_predict(model, X_test):
+    if os.path.exists('model_weights.h5'):
+        # Modelin ağırlıkları varsa yükleyin
+        model.load_weights('model_weights.h5')
+        print("Ağırlıklar yüklendi, tahmin yapılıyor.")
+        predictions = model.predict(X_test)
+        print(predictions[:5])  # İlk 5 tahmini yazdırıyoruz
+    else:
+        print("Ağırlık dosyası bulunamadı. Modeli eğitmeniz gerek.")
 
 
 # Ana işlev

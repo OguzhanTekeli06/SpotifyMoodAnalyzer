@@ -1,7 +1,9 @@
 import json
+import pandas as pd
 from flask import Flask, redirect, url_for, session, request, jsonify
 from authlib.integrations.flask_client import OAuth
 from flask_cors import CORS
+from Model.denem import build_model, categorize_valence, normalize_data, prepare_data
 from config import Config
 import os
 import requests
@@ -67,7 +69,32 @@ def authorize():
 
 
 
+@app.route('/process-audio-features', methods=['POST'])
+def process_audio_features():
+    # Frontend'den gelen JSON verisini alıyoruz
+    audio_features = request.json
 
+    # Audio özelliklerini pandas DataFrame'e dönüştürüyoruz
+    df = pd.json_normalize(audio_features)
+
+    # Modeli yüklemek ve tahmin yapmak için deneme.py'deki kodu kullanıyoruz
+    df = categorize_valence(df)  # Eğer kategorize etme gerekiyorsa
+    
+    # Girdi verilerini hazırlıyoruz
+    X_train, X_test, y_train, y_test = prepare_data(df)  # Eğitim yerine tüm veriyi kullanın
+    X_train_scaled, X_test_scaled = normalize_data(X_train, X_test)
+
+    # Modeli oluşturup eğittikten sonra, eğitilmiş modelini bir yerden yükleyebilirsin
+    model = build_model(X_train.shape[1])
+    
+    # Eğitilmiş modelin ağırlıklarını yükleyin
+    model.load_weights('model_weights.h5')  # Model ağırlıklarını doğru yoldan yüklediğinden emin ol
+
+    # Tahmin yapıyoruz
+    predictions = model.predict(X_test_scaled)
+    
+    # Model sonuçlarını JSON formatında döndür
+    return jsonify(predictions.tolist())
 
 
 

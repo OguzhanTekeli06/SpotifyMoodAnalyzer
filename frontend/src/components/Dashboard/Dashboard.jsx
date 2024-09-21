@@ -33,14 +33,14 @@ const Dashboard = () => {
                 headers: { Authorization: `Bearer ${token}` }  // Cookie'den alınan token'ı kullanıyoruz
             });
             const audioFeatures = response.data;
-
+    
             // Modeli çalıştırmak için backend'e POST isteği gönderiyoruz
             const modelResponse = await axios.post('http://localhost:5000/process-audio-features', audioFeatures);
-       
+           
             // Sonuçları ResultsPage'e yönlendiriyoruz
             navigate('/MoodResults', { state: { results: modelResponse.data } });
         } catch (error) {
-            console.error('Error processing audio features', error);
+            console.error('Audio özellikleri işlenirken hata oluştu', error);
         }
     };
 
