@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,7 +34,7 @@ public class SpotifyController : Controller
         HttpContext.Session.SetString("SpotifyToken", token);
 
         // Token alındıktan sonra ResultPage sayfasına yönlendirelim
-        return RedirectToAction("GetRecentlyPlayedAudioFeatures", "Spotify");
+        return RedirectToAction("SendAudioFeaturesToModel", "Spotify");
     }
 
     public async Task<ActionResult> GetRecentlyPlayed()
@@ -62,22 +63,72 @@ public class SpotifyController : Controller
 
 
     public async Task<ActionResult> GetRecentlyPlayedAudioFeatures()
-{
-    var token = HttpContext.Session.GetString("SpotifyToken");
-    
-    if (string.IsNullOrEmpty(token))
     {
-        return RedirectToAction("Login"); // Eğer token yoksa tekrar girişe yönlendir
+        var token = HttpContext.Session.GetString("SpotifyToken");
+
+        if (string.IsNullOrEmpty(token))
+        {
+            return RedirectToAction("Login"); // Eğer token yoksa tekrar girişe yönlendir
+        }
+
+        // Son dinlenen şarkıları alalım
+        var client = new HttpClient();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var response = await client.GetAsync("https://api.spotify.com/v1/me/player/recently-played?limit=30");
+        var responseContent = await response.Content.ReadAsStringAsync();
+
+        // Şarkı ID'lerini parse edelim
+        var jsonDocument = JsonDocument.Parse(responseContent);
+        var trackIds = new List<string>();
+
+        foreach (var item in jsonDocument.RootElement.GetProperty("items").EnumerateArray())
+        {
+            var trackId = item.GetProperty("track").GetProperty("id").GetString();
+            if (!string.IsNullOrEmpty(trackId))
+            {
+                trackIds.Add(trackId);
+            }
+        }
+
+        // Eğer şarkı ID'leri alındıysa audio özelliklerini çekelim
+        if (trackIds.Count > 0)
+        {
+            // Şarkı ID'lerini virgülle ayırarak formatlayalım
+            var trackIdsParam = string.Join(",", trackIds);
+
+            // Audio özelliklerini alalım
+            var audioFeaturesResponse = await client.GetAsync($"https://api.spotify.com/v1/audio-features?ids={trackIdsParam}");
+            var audioFeaturesContent = await audioFeaturesResponse.Content.ReadAsStringAsync();
+
+            // Gelen veriyi View'a gönderelim
+            ViewBag.AudioFeatures = audioFeaturesContent;
+        }
+        else
+        {
+            ViewBag.AudioFeatures = "No tracks found.";
+        }
+
+        return View("AudioFeaturesResult");
     }
 
-    // Son dinlenen şarkıları alalım
+
+    public async Task<ActionResult> SendAudioFeaturesToModel()
+{
+    var token = HttpContext.Session.GetString("SpotifyToken");
+
+    if (string.IsNullOrEmpty(token))
+    {
+        return RedirectToAction("Login"); // Eğer token yoksa tekrar girişe yönlendirin
+    }
+
+    // Son dinlenen şarkıların audio_features'larını alalım
     var client = new HttpClient();
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     
     var response = await client.GetAsync("https://api.spotify.com/v1/me/player/recently-played?limit=30");
     var responseContent = await response.Content.ReadAsStringAsync();
 
-    // Şarkı ID'lerini parse edelim
     var jsonDocument = JsonDocument.Parse(responseContent);
     var trackIds = new List<string>();
 
@@ -90,28 +141,24 @@ public class SpotifyController : Controller
         }
     }
 
-    // Eğer şarkı ID'leri alındıysa audio özelliklerini çekelim
     if (trackIds.Count > 0)
     {
-        // Şarkı ID'lerini virgülle ayırarak formatlayalım
         var trackIdsParam = string.Join(",", trackIds);
-        
-        // Audio özelliklerini alalım
         var audioFeaturesResponse = await client.GetAsync($"https://api.spotify.com/v1/audio-features?ids={trackIdsParam}");
         var audioFeaturesContent = await audioFeaturesResponse.Content.ReadAsStringAsync();
 
-        // Gelen veriyi View'a gönderelim
-        ViewBag.AudioFeatures = audioFeaturesContent;
-    }
-    else
-    {
-        ViewBag.AudioFeatures = "No tracks found.";
+        // Audio_features verilerini modele gönderelim (API ile)
+        var modelClient = new HttpClient();
+        var modelResponse = await modelClient.PostAsync("http://localhost:5000/model/predict", new StringContent(audioFeaturesContent, Encoding.UTF8, "application/json"));
+        var modelResult = await modelResponse.Content.ReadAsStringAsync();
+
+        // Model sonucunu mood result sayfasına yönlendirelim
+        ViewBag.ModelResult = modelResult;
+        return View("MoodResultPage");
     }
 
-    return View("AudioFeaturesResult");
+    return View("Error");
 }
-
-
 
 
 
@@ -153,11 +200,16 @@ public class SpotifyController : Controller
 
 
 
+
+
+
+
+
     private async Task<string> GetSpotifyToken(string code)
-{
-    var client = new HttpClient();
-    var tokenRequestBody = new FormUrlEncodedContent(new[]
     {
+        var client = new HttpClient();
+        var tokenRequestBody = new FormUrlEncodedContent(new[]
+        {
         new KeyValuePair<string, string>("grant_type", "authorization_code"),
         new KeyValuePair<string, string>("code", code),
         new KeyValuePair<string, string>("redirect_uri", redirectUri),  // http://localhost:5262/Spotify/Callback
@@ -165,23 +217,23 @@ public class SpotifyController : Controller
         new KeyValuePair<string, string>("client_secret", clientSecret),
     });
 
-    var response = await client.PostAsync("https://accounts.spotify.com/api/token", tokenRequestBody);
-    var responseContent = await response.Content.ReadAsStringAsync();
+        var response = await client.PostAsync("https://accounts.spotify.com/api/token", tokenRequestBody);
+        var responseContent = await response.Content.ReadAsStringAsync();
 
-    // Yanıtı loglayalım
-    Console.WriteLine("Spotify Token Yanıtı: " + responseContent);
+        // Yanıtı loglayalım
+        Console.WriteLine("Spotify Token Yanıtı: " + responseContent);
 
-    if (response.IsSuccessStatusCode)
-    {
-        // Token'ı JSON'dan parse edelim
-        var jsonDocument = JsonDocument.Parse(responseContent);
-        if (jsonDocument.RootElement.TryGetProperty("access_token", out var accessToken))
+        if (response.IsSuccessStatusCode)
         {
-            return accessToken.GetString();
+            // Token'ı JSON'dan parse edelim
+            var jsonDocument = JsonDocument.Parse(responseContent);
+            if (jsonDocument.RootElement.TryGetProperty("access_token", out var accessToken))
+            {
+                return accessToken.GetString();
+            }
         }
-    }
 
-    return null;  // Başarısız olursa null döner
-}
+        return null;  // Başarısız olursa null döner
+    }
 
 }
