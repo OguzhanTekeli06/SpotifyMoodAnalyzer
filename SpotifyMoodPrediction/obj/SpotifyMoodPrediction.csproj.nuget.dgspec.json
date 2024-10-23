@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ouzte\\Desktop\\SpotifyMoodPrediction\\SpotifyMoodPrediction.csproj": {}
+    "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\SpotifyMoodPrediction.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ouzte\\Desktop\\SpotifyMoodPrediction\\SpotifyMoodPrediction.csproj": {
+    "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\SpotifyMoodPrediction.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ouzte\\Desktop\\SpotifyMoodPrediction\\SpotifyMoodPrediction.csproj",
+        "projectUniqueName": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\SpotifyMoodPrediction.csproj",
         "projectName": "SpotifyMoodPrediction",
-        "projectPath": "C:\\Users\\ouzte\\Desktop\\SpotifyMoodPrediction\\SpotifyMoodPrediction.csproj",
+        "projectPath": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\SpotifyMoodPrediction.csproj",
         "packagesPath": "C:\\Users\\ouzte\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ouzte\\Desktop\\SpotifyMoodPrediction\\obj\\",
+        "outputPath": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ouzte\\AppData\\Roaming\\NuGet\\NuGet.Config",

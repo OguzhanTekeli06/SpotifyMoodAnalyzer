@@ -33,7 +33,7 @@ public class SpotifyController : Controller
         HttpContext.Session.SetString("SpotifyToken", token);
 
         // Token alındıktan sonra ResultPage sayfasına yönlendirelim
-        return RedirectToAction("ResultPage", "Spotify");
+        return RedirectToAction("GetRecentlyPlayedAudioFeatures", "Spotify");
     }
 
     public async Task<ActionResult> GetRecentlyPlayed()
@@ -54,6 +54,76 @@ public class SpotifyController : Controller
         ViewBag.Songs = responseContent;
         return View();
     }
+
+
+
+
+
+
+
+    public async Task<ActionResult> GetRecentlyPlayedAudioFeatures()
+{
+    var token = HttpContext.Session.GetString("SpotifyToken");
+    
+    if (string.IsNullOrEmpty(token))
+    {
+        return RedirectToAction("Login"); // Eğer token yoksa tekrar girişe yönlendir
+    }
+
+    // Son dinlenen şarkıları alalım
+    var client = new HttpClient();
+    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+    
+    var response = await client.GetAsync("https://api.spotify.com/v1/me/player/recently-played?limit=30");
+    var responseContent = await response.Content.ReadAsStringAsync();
+
+    // Şarkı ID'lerini parse edelim
+    var jsonDocument = JsonDocument.Parse(responseContent);
+    var trackIds = new List<string>();
+
+    foreach (var item in jsonDocument.RootElement.GetProperty("items").EnumerateArray())
+    {
+        var trackId = item.GetProperty("track").GetProperty("id").GetString();
+        if (!string.IsNullOrEmpty(trackId))
+        {
+            trackIds.Add(trackId);
+        }
+    }
+
+    // Eğer şarkı ID'leri alındıysa audio özelliklerini çekelim
+    if (trackIds.Count > 0)
+    {
+        // Şarkı ID'lerini virgülle ayırarak formatlayalım
+        var trackIdsParam = string.Join(",", trackIds);
+        
+        // Audio özelliklerini alalım
+        var audioFeaturesResponse = await client.GetAsync($"https://api.spotify.com/v1/audio-features?ids={trackIdsParam}");
+        var audioFeaturesContent = await audioFeaturesResponse.Content.ReadAsStringAsync();
+
+        // Gelen veriyi View'a gönderelim
+        ViewBag.AudioFeatures = audioFeaturesContent;
+    }
+    else
+    {
+        ViewBag.AudioFeatures = "No tracks found.";
+    }
+
+    return View("AudioFeaturesResult");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

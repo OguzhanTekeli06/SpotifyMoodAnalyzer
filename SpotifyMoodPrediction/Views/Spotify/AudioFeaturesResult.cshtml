@@ -1,0 +1,12 @@
+@{
+    ViewData["Title"] = "Audio Features";
+    var audioFeatures = ViewBag.AudioFeatures;
+}
+
+<h2>Son Dinlenen Şarkıların Audio Özellikleri</h2>
+
+<p>Spotify API'den gelen Audio Features verileri:</p>
+
+<pre>
+    @audioFeatures
+</pre>
