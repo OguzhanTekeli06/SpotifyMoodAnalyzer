@@ -1,3 +1,5 @@
 .venv/
 Backend/config.py
 frontend/node_modules/
+SpotifyMoodPrediction/wwwroot/
+wwwroot/
