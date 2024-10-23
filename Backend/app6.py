@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, session, request, jsonify
+from flask import Flask, redirect, session, request, jsonify
 from authlib.integrations.flask_client import OAuth
 from flask_cors import CORS
 from config import Config
@@ -7,7 +7,6 @@ import requests
 
 app = Flask(__name__)
 CORS(app)  # CORS'u etkinleştirme
-
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 app.secret_key = os.getenv("SECRET_KEY", "supersecretkey")
@@ -23,7 +22,6 @@ spotify = oauth.register(
     authorize_params=None,
     redirect_uri='http://localhost:5000/authorize',
     client_kwargs={'scope': 'user-read-email user-read-private user-top-read user-read-recently-played'},
-    # `state` özelliğini kaldırarak Spotify'ın CSRF korumasını kullanmasını sağlıyoruz.
 )
 
 @app.route('/')
@@ -75,7 +73,7 @@ def recent_tracks_audio_features():
     }
 
     # En son dinlenen şarkıları alıyoruz
-    recent_tracks_response = requests.get('https://api.spotify.com/v1/me/player/recently-played?limit=30', headers=headers)
+    recent_tracks_response = requests.get('https://api.spotify.com/v1/me/player/recently-played?limit=10', headers=headers)
     if recent_tracks_response.status_code != 200:
         return jsonify({"error": "Failed to fetch recently played tracks"}), recent_tracks_response.status_code
     
@@ -88,7 +86,13 @@ def recent_tracks_audio_features():
         return jsonify({"error": "Failed to fetch audio features"}), audio_features_response.status_code
     
     audio_features = audio_features_response.json()
-    return jsonify(audio_features)
+    
+    # Frontend'e yönlendirmek için kullanıcı verileriyle birlikte müzikal özellikleri de gönderiyoruz
+    return jsonify({
+        'user': session.get('user'),
+        'recent_tracks': recent_tracks,
+        'audio_features': audio_features
+    })
 
 if __name__ == '__main__':
     app.run(debug=True)
