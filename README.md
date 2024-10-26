@@ -1,4 +1,4 @@
-## 🎶 Spotify Mood Detection with ASP.NET Core MVC & Flask API
+## 🎶 Spotify Mood Prediction with ASP.NET Core MVC & Flask API
 This ASP.NET Core MVC application integrates with the Spotify API to fetch audio features of recently played tracks. It sends these features to a Flask API hosting a machine learning model, which predicts the user's mood (e.g., happy, sad) based on listening habits.
 
 ## 🔧 Features
