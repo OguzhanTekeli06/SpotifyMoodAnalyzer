@@ -17,9 +17,9 @@ Spotify Developer Account
 Installation
 Clone the Repository
 
-bash
-Copy code
-git clone https://github.com/username/spotify-mood-detection.git
+
+[Copy code](https://gist.github.com/OguzhanTekeli06/6fce4c58630427d69f5d5acef4f50b12)
+git clone https://github.com/OguzhanTekeli06/SpotifyMoodAnalyzer
 Configure Spotify API
 
 Set up Client ID and Secret in the app configuration.
