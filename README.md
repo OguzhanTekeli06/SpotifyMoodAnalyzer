@@ -1,18 +1,18 @@
-# 🎶 Spotify Mood Prediction with MVC & Flask API
-This project is a web application built using the MVC (Model-View-Controller) architecture that utilizes the Spotify API to fetch audio features of the user’s recently played tracks. These audio features are then sent to a Flask-based machine learning model that predicts the user’s mood (e.g., happy, sad). The mood prediction is displayed on the web interface.
+## 🎶 Spotify Mood Detection with ASP.NET Core MVC & Flask API
+This ASP.NET Core MVC application integrates with the Spotify API to fetch audio features of recently played tracks. It sends these features to a Flask API hosting a machine learning model, which predicts the user's mood (e.g., happy, sad) based on listening habits.
 
 ## 🔧 Features
-Spotify API Integration: Fetches audio features like energy, valence, tempo, and more for recent tracks.
-Mood Prediction: Uses a machine learning model served via Flask to determine the user's mood.
-User-Friendly Interface: Displays mood predictions on the screen, giving insights into emotional trends.
+Spotify API Integration: Retrieves audio features like valence, energy, and tempo.
+Mood Prediction: Uses a Flask API model to predict emotional states.
+Interactive Dashboard: Displays mood insights on the web interface.
 ## 📁 Project Structure
-Model: The ML model is hosted on a Flask API, which takes audio features as input and returns a mood prediction.
-View: Displays mood information on a user interface built with HTML and JavaScript.
-Controller: Manages Spotify API requests and coordinates data flow between the view and model.
+Model: Flask API hosts the machine learning model for mood prediction.
+View: ASP.NET Core MVC views display user mood predictions and data.
+Controller: Manages data flow between Spotify, Flask API, and the frontend.
 ## 🚀 Getting Started
 Prerequisites
-Python 3.x
-Flask
+.NET SDK
+Python & Flask
 Spotify Developer Account
 Installation
 Clone the Repository
@@ -20,41 +20,25 @@ Clone the Repository
 bash
 Copy code
 git clone https://github.com/username/spotify-mood-detection.git
-cd spotify-mood-detection
-Install Dependencies
+Configure Spotify API
 
-bash
-Copy code
-pip install -r requirements.txt
-Set Up Spotify API Credentials
-
-Go to the Spotify Developer Dashboard and create an application.
-Note your Client ID and Client Secret.
-Add these to your project’s configuration.
+Set up Client ID and Secret in the app configuration.
 Run Flask API Model
 
 bash
 Copy code
 cd model_api
 flask run
-Run the MVC Application
+Run ASP.NET Core MVC App
 
 bash
 Copy code
-python app.py
+dotnet run
 Usage
-Log in with Spotify to allow the app to fetch your recent listening history.
-The app sends audio features to the Flask API, which processes and returns a mood prediction.
-View your mood prediction on the dashboard.
-## 📊 API and Model Details
-Spotify API: Collects audio_features data such as energy, valence, tempo, etc.
-Flask Model API: The model uses these features to make mood predictions.
-Endpoints:
-/predict: Takes audio features as JSON and returns a mood label.
-## 🤖 Model Training (Optional)
-The machine learning model was trained on a dataset of audio features and mood labels. If you wish to improve or retrain the model:
+Log in via Spotify to fetch recent audio data.
+The app displays your mood based on audio features.
+## 🤖 Model Details
+The Flask API model processes audio features for mood predictions using machine learning.
 
-Prepare your data in a CSV file with audio features and corresponding mood labels.
-Use train_model.py to train a new model.
 ## 📜 License
-This project is licensed under the MIT License.
+Licensed under MIT.
