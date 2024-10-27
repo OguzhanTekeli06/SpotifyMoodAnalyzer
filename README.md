@@ -14,30 +14,29 @@ Prerequisites
 .NET SDK
 Python & Flask
 Spotify Developer Account
-Installation
+
+
 Clone the Repository
-
-
 ```
 git clone https://github.com/OguzhanTekeli06/SpotifyMoodAnalyzer
 ```
-Configure Spotify API
 
-Set up Client ID and Secret in the app configuration.
-Run Flask API Model
+Configure Spotify API. Set up Client ID and Secret in the app configuration.From your spotifyapi app.
 
-bash
-Copy code
-cd model_api
-flask run
-Run ASP.NET Core MVC App
+```
+python ModelApi.py
+```
 
-bash
-Copy code
+Start project
+```
 dotnet run
+```
+
+
 Usage
 Log in via Spotify to fetch recent audio data.
 The app displays your mood based on audio features.
+
 ## 🤖 Model Details
 The Flask API model processes audio features for mood predictions using machine learning.
 
