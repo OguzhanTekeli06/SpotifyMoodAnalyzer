@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\SpotifyMoodPrediction.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\wwwroot\\css\\index.css",
+      "PackagePath": "staticwebassets\\css\\index.css"
+    },
+    {
       "Id": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
