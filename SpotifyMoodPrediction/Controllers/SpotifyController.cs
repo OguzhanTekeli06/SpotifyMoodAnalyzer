@@ -205,7 +205,7 @@ public class SpotifyController : Controller
 
 
 
-    private async Task<string> GetSpotifyToken(string code)
+    private async Task<string?> GetSpotifyToken(string code)
     {
         var client = new HttpClient();
         var tokenRequestBody = new FormUrlEncodedContent(new[]
@@ -227,9 +227,9 @@ public class SpotifyController : Controller
         {
             // Token'ı JSON'dan parse edelim
             var jsonDocument = JsonDocument.Parse(responseContent);
-            if (jsonDocument.RootElement.TryGetProperty("access_token", out var accessToken))
+            if (jsonDocument.RootElement.TryGetProperty("access_token", out var accessToken ) && accessToken.ValueKind != JsonValueKind.Null)
             {
-                return accessToken.GetString();
+                 return accessToken.GetString() ?? string.Empty;
             }
         }
 
