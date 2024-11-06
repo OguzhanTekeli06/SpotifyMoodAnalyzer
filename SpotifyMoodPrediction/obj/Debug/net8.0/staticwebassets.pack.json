@@ -1,12 +1,12 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SpotifyMoodPrediction.bundle.scp.css",
-      "PackagePath": "staticwebassets\\SpotifyMoodPrediction.bundle.scp.css"
-    },
-    {
       "Id": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\wwwroot\\css\\index.css",
       "PackagePath": "staticwebassets\\css\\index.css"
+    },
+    {
+      "Id": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\wwwroot\\css\\layout.css",
+      "PackagePath": "staticwebassets\\css\\layout.css"
     },
     {
       "Id": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\wwwroot\\css\\site.css",

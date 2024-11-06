@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpotifyMoodPrediction")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c58099935e298f58da5cc6d65fd5f63a9f88a720")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f730281684953365b285c46cf3134d6770d603dd")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpotifyMoodPrediction")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpotifyMoodPrediction")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

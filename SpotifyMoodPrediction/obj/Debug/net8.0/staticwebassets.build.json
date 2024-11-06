@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "brv7NYyxPWKY0QgGGZvTLgOyiiqMg+VSrtYTLbRbQ14=",
+  "Hash": "SgoZQacE1TUCAsn9u1um/mPzHHzrN7gdz5WqQsh4p6w=",
   "Source": "SpotifyMoodPrediction",
   "BasePath": "_content/SpotifyMoodPrediction",
   "Mode": "Default",
@@ -16,44 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SpotifyMoodPrediction.styles.css",
-      "SourceId": "SpotifyMoodPrediction",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
-      "BasePath": "_content/SpotifyMoodPrediction",
-      "RelativePath": "SpotifyMoodPrediction.styles.css",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ApplicationBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SpotifyMoodPrediction.styles.css"
-    },
-    {
-      "Identity": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SpotifyMoodPrediction.bundle.scp.css",
-      "SourceId": "SpotifyMoodPrediction",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
-      "BasePath": "_content/SpotifyMoodPrediction",
-      "RelativePath": "SpotifyMoodPrediction.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SpotifyMoodPrediction.bundle.scp.css"
-    },
     {
       "Identity": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\wwwroot\\css\\index.css",
       "SourceId": "SpotifyMoodPrediction",
@@ -72,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\index.css"
+    },
+    {
+      "Identity": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\wwwroot\\css\\layout.css",
+      "SourceId": "SpotifyMoodPrediction",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\wwwroot\\",
+      "BasePath": "_content/SpotifyMoodPrediction",
+      "RelativePath": "css/layout.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\layout.css"
     },
     {
       "Identity": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\SpotifyMoodPrediction\\wwwroot\\css\\site.css",

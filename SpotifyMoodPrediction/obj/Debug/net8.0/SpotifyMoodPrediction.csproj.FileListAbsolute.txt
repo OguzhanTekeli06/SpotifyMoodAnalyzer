@@ -51,9 +51,7 @@ C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\sta
 C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.SpotifyMoodPrediction.props
 C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.SpotifyMoodPrediction.props
 C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\scopedcss\bundle\SpotifyMoodPrediction.styles.css
-C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\scopedcss\projectbundle\SpotifyMoodPrediction.bundle.scp.css
 C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\SpotifyMoodPrediction.dll
 C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\refint\SpotifyMoodPrediction.dll
 C:\Users\ouzte\Desktop\spotifyproject\SpotifyMoodPrediction\obj\Debug\net8.0\SpotifyMoodPrediction.pdb
