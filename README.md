@@ -11,8 +11,9 @@ Model: There is no models for a now.
 View: ASP.NET Core MVC views display user mood predictions and data.    
 Controller: Manages data flow between Spotify, Flask API, and the frontend.    
 
-### FlaskApıModel
-Flask API hosts the machine learning model for mood prediction.   
+### FlaskApı
+ModelApiPKL.py: Flask API hosts the machine learning model for mood prediction.    
+mood_prediction_model.pkl: This file contains a machine learning model trained to predict users' moods. The model is trained on data derived from users' music listening habits and makes predictions about their emotional state.
 
 ## 🚀 Getting Started
 Prerequisites
