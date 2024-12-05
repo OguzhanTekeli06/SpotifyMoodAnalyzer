@@ -6,9 +6,15 @@ Spotify API Integration: Retrieves audio features like valence, energy, and temp
 Mood Prediction: Uses a Flask API model to predict emotional states.
 Interactive Dashboard: Displays mood insights on the web interface.
 ## 📁 Project Structure
-Model: Flask API hosts the machine learning model for mood prediction.
-View: ASP.NET Core MVC views display user mood predictions and data.
-Controller: Manages data flow between Spotify, Flask API, and the frontend.
+### ASP.NET Core MVC  
+Model: There is no models for a now.   
+View: ASP.NET Core MVC views display user mood predictions and data.    
+Controller: Manages data flow between Spotify, Flask API, and the frontend.    
+
+### FlaskApı
+ModelApiPKL.py: Flask API hosts the machine learning model for mood prediction.    
+mood_prediction_model.pkl: This file contains a machine learning model trained to predict users' moods. The model is trained on data derived from users' music listening habits and makes predictions about their emotional state.
+
 ## 🚀 Getting Started
 Prerequisites
 .NET SDK
