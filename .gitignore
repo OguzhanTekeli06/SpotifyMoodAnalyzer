@@ -3,3 +3,7 @@ Backend/config.py
 frontend/node_modules/
 SpotifyMoodPrediction/wwwroot/
 wwwroot/
+.idea/
+.vscode/
+SpotifyMoodPrediction/obj/
+
