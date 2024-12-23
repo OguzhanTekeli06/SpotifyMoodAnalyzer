@@ -1,12 +1,14 @@
 @{
-    ViewData["Title"] = "Audio Features";
-    var audioFeatures = ViewBag.AudioFeatures;
+    ViewBag.Title = "Audio Features";
 }
 
-<h2>Son Dinlenen Şarkıların Audio Özellikleri</h2>
+<h2>Audio Features</h2>
 
-<p>Spotify API'den gelen Audio Features verileri:</p>
-
-<pre>
-    @audioFeatures
-</pre>
+@if (ViewBag.AudioFeatures != null)
+{
+    <pre>@Html.Raw(ViewBag.AudioFeatures)</pre>
+}
+else
+{
+    <p>No audio features available.</p>
+}

@@ -1,0 +1,22 @@
+@{
+    ViewBag.Title = "Recently Played Songs";
+    var songs = ViewBag.RecentlyPlayed as List<dynamic>;
+}
+
+<h2>Recently Played Songs</h2>
+
+@if (songs != null && songs.Count > 0)
+{
+    <ul>
+        @foreach (var song in songs)
+        {
+            <li>
+                <strong>@song.Name</strong> - @song.Artist
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No recently played songs found.</p>
+}
