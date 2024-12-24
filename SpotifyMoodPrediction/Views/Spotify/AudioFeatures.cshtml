@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Audio Features";
+}
+
+<h1>Audio Features</h1>
+
+@if (ViewBag.AudioFeatures != null)
+{
+    <ul>
+        <li>Danceability: @ViewBag.AudioFeatures.Danceability</li>
+        <li>Energy: @ViewBag.AudioFeatures.Energy</li>
+        <li>Tempo: @ViewBag.AudioFeatures.Tempo</li>
+        <li>Loudness: @ViewBag.AudioFeatures.Loudness</li>
+        <li>Valence: @ViewBag.AudioFeatures.Valence</li>
+    </ul>
+}
+else
+{
+    <p>Audio özellikleri bulunamadı.</p>
+}
+

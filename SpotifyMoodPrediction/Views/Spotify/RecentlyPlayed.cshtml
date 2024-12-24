@@ -12,6 +12,13 @@
         {
             <li>
                 <strong>@song.Name</strong> - @song.Artist
+                <ul>
+                    <li><strong>Danceability:</strong> @(song.AudioFeatures?.Danceability ?? 0)</li>
+                    <li><strong>Energy:</strong> @(song.AudioFeatures?.Energy ?? 0)</li>
+                    <li><strong>Tempo:</strong> @(song.AudioFeatures?.Tempo ?? 0) BPM</li>
+                    <li><strong>Loudness:</strong> @(song.AudioFeatures?.Loudness ?? 0) dB</li>
+                    <li><strong>Valence:</strong> @(song.AudioFeatures?.Valence ?? 0)</li>
+                </ul>
             </li>
         }
     </ul>

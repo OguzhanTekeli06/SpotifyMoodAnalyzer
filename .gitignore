@@ -6,4 +6,5 @@ wwwroot/
 .idea/
 .vscode/
 SpotifyMoodPrediction/obj/
+SpotifyMoodPrediction/bin/
 
