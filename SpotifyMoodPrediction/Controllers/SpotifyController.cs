@@ -10,6 +10,10 @@ using System.Net.Http.Json;
 
 public class SpotifyController : Controller
 {
+
+    
+
+
     private readonly string clientId = "446b21c2d6614b12a3c3c919d119927a";
     private readonly string clientSecret = "65ca845d4b684f56ade2eb69eb45d421";
     private readonly string redirectUri = "http://localhost:5262/Spotify/Callback";
@@ -99,7 +103,7 @@ public class SpotifyController : Controller
         return View("RecentlyPlayed");
     }
 
-
+   
 
 
     
