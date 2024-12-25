@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "SpotifyApplicationLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/SpotifyApplicationLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpotifyApplicationLayer.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "SpotifyApplicationLayer/1.0.0": {
+      "type": "project",
+      "path": "../SpotifyApplicationLayer/SpotifyApplicationLayer.csproj",
+      "msbuildProject": "../SpotifyApplicationLayer/SpotifyApplicationLayer.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "SpotifyApplicationLayer >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\ouzte\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyApplicationLayer\\SpotifyApplicationLayer.csproj": {
+              "projectPath": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyApplicationLayer\\SpotifyApplicationLayer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
