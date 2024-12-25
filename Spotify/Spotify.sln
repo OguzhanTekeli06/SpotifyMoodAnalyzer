@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify", "Spotify\Spotify.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyApplicationLayer", "SpotifyApplicationLayer\SpotifyApplicationLayer.csproj", "{C26CF96E-0E41-447B-AF30-2F83D56355B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotifyDomainLayer", "SpotifyDomainLayer\SpotifyDomainLayer.csproj", "{94F85045-3FD5-48AA-B21D-6AB9AF5F018A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C26CF96E-0E41-447B-AF30-2F83D56355B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C26CF96E-0E41-447B-AF30-2F83D56355B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C26CF96E-0E41-447B-AF30-2F83D56355B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94F85045-3FD5-48AA-B21D-6AB9AF5F018A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94F85045-3FD5-48AA-B21D-6AB9AF5F018A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94F85045-3FD5-48AA-B21D-6AB9AF5F018A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94F85045-3FD5-48AA-B21D-6AB9AF5F018A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotify\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|solutionrelative:spotify\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotify\\controllers\\spotifycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|solutionrelative:spotify\\controllers\\spotifycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C26CF96E-0E41-447B-AF30-2F83D56355B5}|SpotifyApplicationLayer\\SpotifyApplicationLayer.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotifyapplicationlayer\\ispotifyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C26CF96E-0E41-447B-AF30-2F83D56355B5}|SpotifyApplicationLayer\\SpotifyApplicationLayer.csproj|solutionrelative:spotifyapplicationlayer\\ispotifyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C26CF96E-0E41-447B-AF30-2F83D56355B5}|SpotifyApplicationLayer\\SpotifyApplicationLayer.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotifyapplicationlayer\\spotifyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C26CF96E-0E41-447B-AF30-2F83D56355B5}|SpotifyApplicationLayer\\SpotifyApplicationLayer.csproj|solutionrelative:spotifyapplicationlayer\\spotifyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotify\\views\\spotify\\sonuc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|solutionrelative:spotify\\views\\spotify\\sonuc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotify\\views\\spotify\\getrecentlyplayed.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|solutionrelative:spotify\\views\\spotify\\getrecentlyplayed.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotify\\controllers\\spotifycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|solutionrelative:spotify\\controllers\\spotifycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94F85045-3FD5-48AA-B21D-6AB9AF5F018A}|SpotifyDomainLayer\\SpotifyDomainLayer.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotifydomainlayer\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94F85045-3FD5-48AA-B21D-6AB9AF5F018A}|SpotifyDomainLayer\\SpotifyDomainLayer.csproj|solutionrelative:spotifydomainlayer\\song.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94F85045-3FD5-48AA-B21D-6AB9AF5F018A}|SpotifyDomainLayer\\SpotifyDomainLayer.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotifydomainlayer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94F85045-3FD5-48AA-B21D-6AB9AF5F018A}|SpotifyDomainLayer\\SpotifyDomainLayer.csproj|solutionrelative:spotifydomainlayer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotify\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|solutionrelative:spotify\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7F5FB20A-5A88-4188-AEAC-CE5AC7072112}|Spotify\\Spotify.csproj|c:\\users\\ouzte\\desktop\\spotifyproject\\spotify\\spotify\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -30,67 +42,106 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ISpotifyService.cs",
+              "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyApplicationLayer\\ISpotifyService.cs",
+              "RelativeDocumentMoniker": "SpotifyApplicationLayer\\ISpotifyService.cs",
+              "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyApplicationLayer\\ISpotifyService.cs",
+              "RelativeToolTip": "SpotifyApplicationLayer\\ISpotifyService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-25T18:52:55.728Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Program.cs",
-              "RelativeDocumentMoniker": "Spotify\\Program.cs",
-              "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Program.cs",
-              "RelativeToolTip": "Spotify\\Program.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAACYAAAARAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Song.cs",
+              "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyDomainLayer\\Song.cs",
+              "RelativeDocumentMoniker": "SpotifyDomainLayer\\Song.cs",
+              "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyDomainLayer\\Song.cs",
+              "RelativeToolTip": "SpotifyDomainLayer\\Song.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T16:54:03.828Z",
+              "WhenOpened": "2024-12-25T18:46:43.76Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Sonuc.cshtml",
-              "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Views\\Spotify\\Sonuc.cshtml",
-              "RelativeDocumentMoniker": "Spotify\\Views\\Spotify\\Sonuc.cshtml",
-              "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Views\\Spotify\\Sonuc.cshtml",
-              "RelativeToolTip": "Spotify\\Views\\Spotify\\Sonuc.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-25T16:47:26.04Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SpotifyController.cs",
-              "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Controllers\\SpotifyController.cs",
-              "RelativeDocumentMoniker": "Spotify\\Controllers\\SpotifyController.cs",
-              "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Controllers\\SpotifyController.cs",
-              "RelativeToolTip": "Spotify\\Controllers\\SpotifyController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAIwBMAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyDomainLayer\\Class1.cs",
+              "RelativeDocumentMoniker": "SpotifyDomainLayer\\Class1.cs",
+              "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyDomainLayer\\Class1.cs",
+              "RelativeToolTip": "SpotifyDomainLayer\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T16:03:29.301Z",
+              "WhenOpened": "2024-12-25T18:46:31.87Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "GetRecentlyPlayed.cshtml",
+              "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Views\\Spotify\\GetRecentlyPlayed.cshtml",
+              "RelativeDocumentMoniker": "Spotify\\Views\\Spotify\\GetRecentlyPlayed.cshtml",
+              "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Views\\Spotify\\GetRecentlyPlayed.cshtml",
+              "RelativeToolTip": "Spotify\\Views\\Spotify\\GetRecentlyPlayed.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-25T18:42:39.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "SpotifyService.cs",
               "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyApplicationLayer\\SpotifyService.cs",
               "RelativeDocumentMoniker": "SpotifyApplicationLayer\\SpotifyService.cs",
               "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\SpotifyApplicationLayer\\SpotifyService.cs",
               "RelativeToolTip": "SpotifyApplicationLayer\\SpotifyService.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwBIAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAgwEUAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T16:00:20.383Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
+              "Title": "SpotifyController.cs",
+              "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Controllers\\SpotifyController.cs",
+              "RelativeDocumentMoniker": "Spotify\\Controllers\\SpotifyController.cs",
+              "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Controllers\\SpotifyController.cs",
+              "RelativeToolTip": "Spotify\\Controllers\\SpotifyController.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAUwEEAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-25T16:03:29.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\appsettings.json",
+              "RelativeDocumentMoniker": "Spotify\\appsettings.json",
+              "ToolTip": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\appsettings.json",
+              "RelativeToolTip": "Spotify\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-25T17:54:27.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Spotify\\Views\\Home\\Index.cshtml",
@@ -98,8 +149,7 @@
               "RelativeToolTip": "Spotify\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-25T16:15:02.778Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-25T16:15:02.778Z"
             }
           ]
         }

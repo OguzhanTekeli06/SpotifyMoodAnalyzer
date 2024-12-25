@@ -7,6 +7,19 @@ namespace Spotify.Controllers
     {
         private readonly ISpotifyService _spotifyService;
 
+
+
+        private readonly HttpClient _client;
+
+        
+
+        
+
+
+
+
+
+
         public SpotifyController(ISpotifyService spotifyService)
         {
             _spotifyService = spotifyService;
@@ -23,8 +36,8 @@ namespace Spotify.Controllers
 
         public IActionResult Login()
         {
-            var loginUrl = _spotifyService.GetLoginUrl();
-            return Redirect(loginUrl);
+            var Spotifyurl = _spotifyService.GetLoginUrl();
+            return Redirect(Spotifyurl);
         }
 
         public async Task<IActionResult> Callback(string code)
@@ -36,20 +49,31 @@ namespace Spotify.Controllers
             }
 
             HttpContext.Session.SetString("SpotifyToken", token);
-            return RedirectToAction("Login", "Spotify");
+            return RedirectToAction("GetRecentlyPlayed", "Spotify");
         }
 
-        //public async Task<IActionResult> GetRecentlyPlayed()
-        //{
-        //    var token = HttpContext.Session.GetString("SpotifyToken");
-        //    if (string.IsNullOrEmpty(token))
-        //    {
-        //        return RedirectToAction("Login");
-        //    }
+        public async Task<IActionResult> GetRecentlyPlayed()
+        {
+            var token = HttpContext.Session.GetString("SpotifyToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login");
+            }
 
-        //    var songs = await _spotifyService.GetRecentlyPlayed(token);
-        //    return View(songs);
-        //}
+            try
+            {
+                var songs = await _spotifyService.GetRecentlyPlayed(token);
+                return View(songs);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                Console.WriteLine("ulaaaaaaaaaaaa");
+                return View("Error");
+            }
+        }
+
+        
 
         public async Task<IActionResult> getdeneme()
         {

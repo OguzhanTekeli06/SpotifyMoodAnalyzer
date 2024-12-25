@@ -1,6 +1,6 @@
-@{
+﻿@{
     ViewBag.Title = "Recently Played Songs";
-    var songs = ViewBag.RecentlyPlayed as List<dynamic>;
+    var songs = Model as List<dynamic>;
 }
 
 <h2>Recently Played Songs</h2>
@@ -19,4 +19,9 @@
 else
 {
     <p>No recently played songs found.</p>
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
 }

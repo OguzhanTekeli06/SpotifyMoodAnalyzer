@@ -1,0 +1,17 @@
+﻿@model List<SpotifyDomainLayer.Song> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recently Played Songs</title>
+</head>
+<body>
+    <h1>Recently Played Songs</h1>
+    <ul>
+        @foreach (var song in Model)
+        {
+            <li>@song.Name by @song.Artist</li>
+        }
+    </ul>
+</body>
+</html>

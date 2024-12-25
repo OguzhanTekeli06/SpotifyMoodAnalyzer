@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpotifyDomainLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -13,7 +14,7 @@ public class SpotifyService : ISpotifyService
     private readonly string clientId = "446b21c2d6614b12a3c3c919d119927a";
     private readonly string clientSecret = "65ca845d4b684f56ade2eb69eb45d421";
     private readonly string redirectUri = "http://localhost:5271/Spotify/Callback";
-    private readonly HttpClient _client;
+    private readonly HttpClient _client = new HttpClient();
 
     public SpotifyService()
     {
@@ -24,7 +25,6 @@ public class SpotifyService : ISpotifyService
     {
         return $"https://accounts.spotify.com/authorize?client_id={clientId}&response_type=code&redirect_uri={redirectUri}&scope=user-read-recently-played";
     }
-
     public async Task<string?> GetSpotifyToken(string code)
     {
         var byteArray = Encoding.ASCII.GetBytes($"{clientId}:{clientSecret}");
@@ -32,38 +32,81 @@ public class SpotifyService : ISpotifyService
 
         var tokenRequestBody = new FormUrlEncodedContent(new[]
         {
-            new KeyValuePair<string, string>("grant_type", "authorization_code"),
-            new KeyValuePair<string, string>("code", code),
-            new KeyValuePair<string, string>("redirect_uri", redirectUri)
-        });
+        new KeyValuePair<string, string>("grant_type", "authorization_code"),
+        new KeyValuePair<string, string>("code", code),
+        new KeyValuePair<string, string>("redirect_uri", redirectUri),
+        new KeyValuePair<string, string>("client_id", clientId), // client_id burada gerekli değil ama Spotify API dökümantasyonunda bazen eklenmesi beklenebilir.
+        new KeyValuePair<string, string>("client_secret", clientSecret), // Burada client_secret de genellikle gereklidir.
+    });
 
-        var response = await _client.PostAsync("https://accounts.spotify.com/api/token", tokenRequestBody);
-        if (response.IsSuccessStatusCode)
+        try
         {
-            var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
-            return json.RootElement.GetProperty("access_token").GetString();
+            // Spotify'a token talep gönderiyoruz
+            var response = await _client.PostAsync("https://accounts.spotify.com/api/token", tokenRequestBody);
+            var responseContent = await response.Content.ReadAsStringAsync();
+
+            // Başarılı ise access_token'ı döndür
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonDocument = JsonDocument.Parse(responseContent);
+                if (jsonDocument.RootElement.TryGetProperty("access_token", out var accessToken) && accessToken.ValueKind != JsonValueKind.Null)
+                {
+                    return accessToken.GetString() ?? string.Empty;
+                }
+            }
+
+            // Başarısız olduğunda hata logunu al
+            Console.WriteLine($"Error: {response.StatusCode}, Message: {responseContent}");
         }
+        catch (Exception ex)
+        {
+            // Hata durumunda loglama yapılacak
+            Console.WriteLine($"Exception occurred: {ex.Message}");
+        }
+
         return null;
     }
 
-    //public async Task<List<dynamic>> GetRecentlyPlayed(string token)
-    //{
-    //    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-    //    var response = await _client.GetAsync("https://api.spotify.com/v1/me/player/recently-played?limit=10");
-    //    var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
-    //    var songs = new List<dynamic>();
+    public async Task<List<Song>> GetRecentlyPlayed(string token)
+    {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-    //    foreach (var item in json.RootElement.GetProperty("items").EnumerateArray())
-    //    {
-    //        var track = item.GetProperty("track");
-    //        songs.Add(new
-    //        {
-    //            Name = track.GetProperty("name").GetString(),
-    //            Artist = track.GetProperty("artists")[0].GetProperty("name").GetString()
-    //        });
-    //    }
-    //    return songs;
-    //}
+        var response = await _client.GetAsync("https://api.spotify.com/v1/me/player/recently-played?limit=10");
+        var responseContent = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception("Spotify API'sinden veriler alınırken bir hata oluştu.");
+        }
+
+        var songs = new List<Song>();
+
+        try
+        {
+            var jsonDocument = JsonDocument.Parse(responseContent);
+            foreach (var item in jsonDocument.RootElement.GetProperty("items").EnumerateArray())
+            {
+                var track = item.GetProperty("track");
+                var name = track.GetProperty("name").GetString();
+                var artist = track.GetProperty("artists")[0].GetProperty("name").GetString();
+
+                songs.Add(new Song
+                {
+                    Name = name,
+                    Artist = artist
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("JSON parse hatası: " + ex.Message);
+            throw new Exception("Spotify'dan alınan veriler işlenirken bir hata oluştu.");
+        }
+
+        return songs;
+    }
+
+
 
 
 
