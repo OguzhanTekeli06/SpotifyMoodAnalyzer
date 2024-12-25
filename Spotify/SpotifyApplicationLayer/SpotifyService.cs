@@ -12,7 +12,7 @@ public class SpotifyService : ISpotifyService
 {
     private readonly string clientId = "446b21c2d6614b12a3c3c919d119927a";
     private readonly string clientSecret = "65ca845d4b684f56ade2eb69eb45d421";
-    private readonly string redirectUri = "http://localhost:5262/Spotify/Callback";
+    private readonly string redirectUri = "http://localhost:5271/Spotify/Callback";
     private readonly HttpClient _client;
 
     public SpotifyService()
@@ -46,24 +46,24 @@ public class SpotifyService : ISpotifyService
         return null;
     }
 
-    public async Task<List<dynamic>> GetRecentlyPlayed(string token)
-    {
-        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        var response = await _client.GetAsync("https://api.spotify.com/v1/me/player/recently-played?limit=10");
-        var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
-        var songs = new List<dynamic>();
+    //public async Task<List<dynamic>> GetRecentlyPlayed(string token)
+    //{
+    //    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+    //    var response = await _client.GetAsync("https://api.spotify.com/v1/me/player/recently-played?limit=10");
+    //    var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+    //    var songs = new List<dynamic>();
 
-        foreach (var item in json.RootElement.GetProperty("items").EnumerateArray())
-        {
-            var track = item.GetProperty("track");
-            songs.Add(new
-            {
-                Name = track.GetProperty("name").GetString(),
-                Artist = track.GetProperty("artists")[0].GetProperty("name").GetString()
-            });
-        }
-        return songs;
-    }
+    //    foreach (var item in json.RootElement.GetProperty("items").EnumerateArray())
+    //    {
+    //        var track = item.GetProperty("track");
+    //        songs.Add(new
+    //        {
+    //            Name = track.GetProperty("name").GetString(),
+    //            Artist = track.GetProperty("artists")[0].GetProperty("name").GetString()
+    //        });
+    //    }
+    //    return songs;
+    //}
 
 
 

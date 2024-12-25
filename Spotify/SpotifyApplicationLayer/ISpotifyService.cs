@@ -10,5 +10,5 @@ public interface ISpotifyService
 {
     string GetLoginUrl();
     Task<string?> GetSpotifyToken(string code);
-    Task<List<dynamic>> GetRecentlyPlayed(string token);
+    //Task<List<dynamic>> GetRecentlyPlayed(string token);
 }

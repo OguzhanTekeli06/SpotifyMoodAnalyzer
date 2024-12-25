@@ -12,6 +12,15 @@ namespace Spotify.Controllers
             _spotifyService = spotifyService;
         }
 
+
+
+        public IActionResult Login2()
+        {
+            return View("Login", "Spotify");
+        }
+
+
+
         public IActionResult Login()
         {
             var loginUrl = _spotifyService.GetLoginUrl();
@@ -27,19 +36,27 @@ namespace Spotify.Controllers
             }
 
             HttpContext.Session.SetString("SpotifyToken", token);
-            return RedirectToAction("GetRecentlyPlayed");
+            return RedirectToAction("Login", "Spotify");
         }
 
-        public async Task<IActionResult> GetRecentlyPlayed()
-        {
-            var token = HttpContext.Session.GetString("SpotifyToken");
-            if (string.IsNullOrEmpty(token))
-            {
-                return RedirectToAction("Login");
-            }
+        //public async Task<IActionResult> GetRecentlyPlayed()
+        //{
+        //    var token = HttpContext.Session.GetString("SpotifyToken");
+        //    if (string.IsNullOrEmpty(token))
+        //    {
+        //        return RedirectToAction("Login");
+        //    }
 
-            var songs = await _spotifyService.GetRecentlyPlayed(token);
-            return View(songs);
+        //    var songs = await _spotifyService.GetRecentlyPlayed(token);
+        //    return View(songs);
+        //}
+
+        public async Task<IActionResult> getdeneme()
+        {
+            var sonuc = "Bu, deneme sonucudur.";
+
+            // View'e sonuca göndermek
+            return View("Sonuc", sonuc);
         }
     }
 }
