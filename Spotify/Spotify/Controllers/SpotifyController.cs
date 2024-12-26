@@ -32,7 +32,10 @@ namespace Spotify.Controllers
             return View("Login", "Spotify");
         }
 
-
+        public IActionResult mainpage()
+        {
+            return View();
+        }
 
         public IActionResult Login()
         {
@@ -49,7 +52,7 @@ namespace Spotify.Controllers
             }
 
             HttpContext.Session.SetString("SpotifyToken", token);
-            return RedirectToAction("GetRecentlyPlayed", "Spotify");
+            return RedirectToAction("mainpage");
         }
 
         public async Task<IActionResult> GetRecentlyPlayed()
