@@ -14,5 +14,7 @@ public interface ISpotifyService
 
     Task<List<Song>> GetRecentlyPlayed(string token);
 
+    Task<UserProfile?> GetUserProfile(string token);
+
     //Task<List<dynamic>> GetRecentlyPlayed(string token);
 }

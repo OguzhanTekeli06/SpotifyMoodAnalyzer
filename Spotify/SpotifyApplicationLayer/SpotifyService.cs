@@ -23,7 +23,7 @@ public class SpotifyService : ISpotifyService
 
     public string GetLoginUrl()
     {
-        return $"https://accounts.spotify.com/authorize?client_id={clientId}&response_type=code&redirect_uri={redirectUri}&scope=user-read-recently-played";
+        return $"https://accounts.spotify.com/authorize?client_id={clientId}&response_type=code&redirect_uri={redirectUri}&scope=user-read-recently-played user-read-private user-read-email";
     }
     public async Task<string?> GetSpotifyToken(string code)
     {
@@ -105,6 +105,50 @@ public class SpotifyService : ISpotifyService
 
         return songs;
     }
+
+
+
+
+    public async Task<UserProfile?> GetUserProfile(string token)
+    {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        try
+        {
+            var response = await _client.GetAsync("https://api.spotify.com/v1/me");
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Response Status: {response.StatusCode}");
+            Console.WriteLine($"Response Content: {responseContent}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine($"Error fetching user profile: {response.StatusCode}, {responseContent}");
+                return null;
+            }
+
+            var jsonDocument = JsonDocument.Parse(responseContent);
+            var userProfile = new UserProfile
+            {
+                DisplayName = jsonDocument.RootElement.GetProperty("display_name").GetString(),
+                Country = jsonDocument.RootElement.GetProperty("country").GetString(),
+                Email = jsonDocument.RootElement.GetProperty("email").GetString(),
+                ProfilePictureUrl = jsonDocument.RootElement.TryGetProperty("images", out var images) && images.GetArrayLength() > 0
+                    ? images[0].GetProperty("url").GetString()
+                    : null
+            };
+
+            return userProfile;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception occurred while fetching user profile: {ex.Message}");
+            return null;
+        }
+    }
+
+
+
+
 
 
 

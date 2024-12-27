@@ -1,16 +1,51 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model SpotifyDomainLayer.UserProfile
 
 @{
     ViewData["Title"] = "Ana Sayfa";
 }
 
 <h1>Ana Sayfa</h1>
-<p>Spotify'dan alınan verileri görmek için aşağıdaki butona tıklayın:</p>
+
+
+
+
+
 
 <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
     <button type="submit">Son Çalınanları Göster</button>
 </form>
+
+
+
+
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        <strong>Hata:</strong> @ViewBag.ErrorMessage
+    </div>
+}
+else if (Model != null)
+{
+    <p><strong>Display Name:</strong> @Model.DisplayName</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Country:</strong> @Model.Country</p>
+
+    @if (!string.IsNullOrEmpty(Model.ProfilePictureUrl))
+    {
+        <div class="profile-picture">
+            <img src="@Model.ProfilePictureUrl" alt="Profile Picture" width="150" height="150" />
+        </div>
+    }
+    else
+    {
+        <p>No profile picture available.</p>
+    }
+}
+else
+{
+    <p>Profil verisi henüz yüklenemedi.</p>
+}
+
+<p>Spotify'dan alınan verileri görmek için aşağıdaki butona tıklayın:</p>
+

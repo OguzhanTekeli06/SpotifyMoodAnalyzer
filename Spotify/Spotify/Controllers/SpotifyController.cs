@@ -32,9 +32,34 @@ namespace Spotify.Controllers
             return View("Login", "Spotify");
         }
 
-        public IActionResult mainpage()
+        public async Task<IActionResult> mainpage()
         {
-            return View();
+            var token = HttpContext.Session.GetString("SpotifyToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login");
+            }
+
+            try
+            {
+                var userProfile = await _spotifyService.GetUserProfile(token);
+
+                // Debugging: Profil verisini kontrol et
+                Console.WriteLine($"User Profile: {userProfile}");
+
+                if (userProfile == null)
+                {
+                    ViewBag.ErrorMessage = "Kullanıcı profili alınamadı.";
+                    return View();
+                }
+
+                return View(userProfile);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Bir hata oluştu: " + ex.Message;
+                return View();
+            }
         }
 
         public IActionResult Login()
@@ -85,5 +110,38 @@ namespace Spotify.Controllers
             // View'e sonuca göndermek
             return View("Sonuc", sonuc);
         }
+
+
+        public async Task<IActionResult> GetUserProfile()
+        {
+            var token = HttpContext.Session.GetString("SpotifyToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login");
+            }
+
+            try
+            {
+                var userProfile = await _spotifyService.GetUserProfile(token);
+
+                if (userProfile == null)
+                {
+                    return Json(new { success = false, message = "asdfasdfasdfasdfasfdasdfasdfas." });
+                }
+
+                return Json(new { success = true, data = userProfile });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+
+
+
+
+
+
     }
 }
