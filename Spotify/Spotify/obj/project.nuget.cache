@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sgdQJoeqyBk=",
+  "dgSpecHash": "JLifoJLyNdw=",
   "success": true,
   "projectFilePath": "C:\\Users\\ouzte\\Desktop\\spotifyproject\\Spotify\\Spotify\\Spotify.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ouzte\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,0 +1,17 @@
+﻿@model List<SpotifyDomainLayer.Playlist>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlists</title>
+</head>
+<body>
+    <h1>Your Playlists</h1>
+    <ul>
+        @foreach (var playlist in Model)
+        {
+            <li>@playlist.Name (@playlist.TracksCount tracks)</li>
+        }
+    </ul>
+</body>
+</html>

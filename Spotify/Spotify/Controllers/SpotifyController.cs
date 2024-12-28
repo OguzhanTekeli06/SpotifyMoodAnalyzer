@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpotifyApplicationLayer;
+using SpotifyDomainLayer;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace Spotify.Controllers
 {
@@ -243,7 +247,27 @@ namespace Spotify.Controllers
             }
         }
 
+        
 
+        //public async Task<IActionResult> GetPlaylists()
+        //{
+        //    var token = HttpContext.Session.GetString("SpotifyToken");
+        //    if (string.IsNullOrEmpty(token))
+        //    {
+        //        return RedirectToAction("Login");
+        //    }
+
+        //    try
+        //    {
+        //        var playlists = await _spotifyService.GetPlaylists(token);
+        //        return View(playlists);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewBag.ErrorMessage = ex.Message;
+        //        return View("Error");
+        //    }
+        //}
 
     }
 }

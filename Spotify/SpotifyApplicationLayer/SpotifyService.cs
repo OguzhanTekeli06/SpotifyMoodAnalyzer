@@ -238,6 +238,39 @@ public class SpotifyService : ISpotifyService
     }
 
 
+    //public async Task<List<Playlist>> GetPlaylists(string token)
+    //{
+    //    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+    //    var response = await _client.GetAsync("https://api.spotify.com/v1/me/playlists");
+    //    if (!response.IsSuccessStatusCode)
+    //    {
+    //        throw new Exception("Error fetching playlists from Spotify API.");
+    //    }
+
+    //    var content = await response.Content.ReadAsStringAsync();
+    //    var jsonDocument = JsonDocument.Parse(content);
+
+    //    var playlists = new List<Playlist>();
+    //    foreach (var item in jsonDocument.RootElement.GetProperty("items").EnumerateArray())
+    //    {
+    //        var name = item.GetProperty("name").GetString();
+    //        var uri = item.GetProperty("external_urls").GetProperty("spotify").GetString();
+    //        var description = item.GetProperty("description").GetString();
+    //        var imageUrl = item.GetProperty("images").EnumerateArray().FirstOrDefault().GetProperty("url").GetString();
+
+    //        playlists.Add(new Playlist
+    //        {
+    //            Name = name,
+    //            Uri = uri,
+    //            Description = description,
+    //            ImageUrl = imageUrl
+    //        });
+    //    }
+
+    //    return playlists;
+    //}
+
 
 
 }
