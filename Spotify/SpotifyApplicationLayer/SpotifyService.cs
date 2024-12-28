@@ -23,7 +23,7 @@ public class SpotifyService : ISpotifyService
 
     public string GetLoginUrl()
     {
-        return $"https://accounts.spotify.com/authorize?client_id={clientId}&response_type=code&redirect_uri={redirectUri}&scope=user-read-recently-played user-read-private user-read-email";
+        return $"https://accounts.spotify.com/authorize?client_id={clientId}&response_type=code&redirect_uri={redirectUri}&scope=user-read-recently-played user-read-private user-read-email user-modify-playback-state";
     }
     public async Task<string?> GetSpotifyToken(string code)
     {
@@ -151,6 +151,29 @@ public class SpotifyService : ISpotifyService
         }
     }
 
+    public async Task PausePlayback(string token)
+    {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        try
+        {
+            var response = await _client.PutAsync("https://api.spotify.com/v1/me/player/pause", null);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Playback paused successfully.");
+            }
+            else
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Error pausing playback: {response.StatusCode}, {responseContent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Exception occurred while pausing playback: {ex.Message}");
+        }
+    }
 
 
 
