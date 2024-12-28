@@ -133,8 +133,13 @@ public class SpotifyService : ISpotifyService
                 Country = jsonDocument.RootElement.GetProperty("country").GetString(),
                 Email = jsonDocument.RootElement.GetProperty("email").GetString(),
                 ProfilePictureUrl = jsonDocument.RootElement.TryGetProperty("images", out var images) && images.GetArrayLength() > 0
-                    ? images[0].GetProperty("url").GetString()
-                    : null
+                ? images[0].GetProperty("url").GetString()
+                : null,
+                Product = jsonDocument.RootElement.GetProperty("product").GetString(),
+                Followers = jsonDocument.RootElement.TryGetProperty("followers", out var followers)
+                ? followers.GetProperty("total").GetInt32()
+                : 0,
+                
             };
 
             return userProfile;
