@@ -247,7 +247,60 @@ namespace Spotify.Controllers
             }
         }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> SetVolume([FromBody] VolumeModel model)
+        {
+            if (model == null)
+            {
+                return BadRequest("Volume model is null.");
+            }
+
+            var token = HttpContext.Session.GetString("SpotifyToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login");
+            }
+
+            try
+            {
+                await _spotifyService.SetVolume(token, model.VolumePercent);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Bir hata oluştu: " + ex.Message;
+                return View("Error");
+            }
+        }
+
+        public class VolumeModel
+        {
+            public int VolumePercent { get; set; }
+        }
+
+        //public async Task<IActionResult> SetVolume(int volumePercent)
+        //{
+        //    var token = HttpContext.Session.GetString("SpotifyToken");
+        //    if (string.IsNullOrEmpty(token))
+        //    {
+        //        return RedirectToAction("Login");
+        //    }
+
+        //    try
+        //    {
+        //        // Ses seviyesini ayarlıyoruz
+        //        await _spotifyService.SetVolume(token, volumePercent);
+        //        return RedirectToAction("MainPage");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewBag.ErrorMessage = "Bir hata oluştu: " + ex.Message;
+        //        return View("Error");
+        //    }
+        //}
+
+
+
 
         //public async Task<IActionResult> GetPlaylists()
         //{

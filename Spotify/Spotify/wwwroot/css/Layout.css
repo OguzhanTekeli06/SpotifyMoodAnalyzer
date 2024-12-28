@@ -1,0 +1,40 @@
+﻿/* Navbar layout ayarları */
+.navbar {
+    background-color: #000000 !important; /* Siyah arka plan */
+    border-bottom: none !important; /* Kenarlık varsa, kaldırıyoruz */
+    color: #FFFFFF !important;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* Sol ve sağ öğeleri düzenle */
+    align-items: center; /* Yükseklik hizalaması */
+    padding: 10px 20px; /* Navbar içi padding */
+    margin-bottom: 160px;
+}
+
+/* Navbar öğeleri */
+.navbar-brand, .nav-link {
+    color: #FFFFFF !important; /* Menü yazıları beyaz */
+    font-size: 18px; /* Yazı boyutu */
+}
+
+    .navbar-brand:hover, .nav-link:hover {
+        color: #1DB954 !important; /* Yeşil hover efekti */
+    }
+
+/* Navbar'ın esnek düzenini ve hizalamayı iyileştir */
+.navbar-collapse {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.footer {
+    text-align: center;
+    padding: 3px 0;
+    font-size: 0.9rem;
+    color: #FFFFFF; /* Beyaz yazı */
+}

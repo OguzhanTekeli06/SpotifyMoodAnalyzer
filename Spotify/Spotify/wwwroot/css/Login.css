@@ -1,0 +1,34 @@
+﻿/* Sadece login-container için özel stil */
+.login-container {
+    display: flex; /* Flexbox ile düzenleme */
+    justify-content: center; /* Yatay ortalama */
+    align-items: center; /* Dikey ortalama */
+    height: 100vh; /* Ekranın tamamını kapsa */
+}
+
+/* Sayfanın arka plan rengi */
+body {
+    background-color: #000; /* Arka planı siyah yap */
+    margin: 0; /* Varsayılan boşlukları kaldır */
+}
+
+/* Buton tasarımı */
+.btn {
+    background-color: #1DB954; /* Spotify yeşili */
+    color: #fff; /* Beyaz yazı */
+    border: none; /* Kenarlık yok */
+    padding: 15px 30px; /* Buton boyutu */
+    font-size: 20px; /* Yazı boyutu */
+    font-weight: bold; /* Kalın yazı */
+    text-align: center; /* Metin ortalama */
+    text-decoration: none; /* Alt çizgi yok */
+    border-radius: 50px; /* Yuvarlak köşeler */
+    display: inline-block; /* Blok görünümlü */
+    cursor: pointer; /* İşaretçi simgesi */
+    transition: background-color 0.3s ease; /* Hover animasyonu */
+}
+
+    /* Hover efekti */
+    .btn:hover {
+        background-color: #1aa34a; /* Daha koyu Spotify yeşili */
+    }

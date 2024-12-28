@@ -102,4 +102,55 @@
         }
     </div>
 
+    
+    <div class="volume">
+        <h2>Ses Ayarı</h2>
+
+        <!-- Ses seviyesi çubuğu -->
+        <input type="range" id="volumeSlider" min="0" max="100" value="50" step="1" />
+        <p>Ses Seviyesi: <span id="volumeValue">50</span>%</p>
+
+        <!-- Set Volume Button -->
+        <button id="setVolumeButton" onclick="setVolume()">Ses Ayarla</button>
+
+        <script>
+            // Ses seviyesini slider'dan al
+            var volumeSlider = document.getElementById("volumeSlider");
+            var volumeValue = document.getElementById("volumeValue");
+
+            // Slider'ın değerini her değiştirdiğinde güncelle
+            volumeSlider.oninput = function() {
+                volumeValue.textContent = volumeSlider.value;
+            }
+
+            // Ses seviyesini ayarlama işlemi
+                        function setVolume() {
+                var volume = volumeSlider.value;
+
+                // Volume modelini oluştur
+                var volumeModel = {
+                    volumePercent: volume
+                };
+
+                fetch('/Spotify/SetVolume', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(volumeModel)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Ses seviyesi başarıyla ayarlandı.");
+                    } else {
+                        alert("Ses seviyesi ayarlanırken bir hata oluştu.");
+                    }
+                })
+                .catch(error => {
+                    alert("Bir hata oluştu: " + error);
+                });
+            }
+        </script>
+    </div>
+    
 </div>

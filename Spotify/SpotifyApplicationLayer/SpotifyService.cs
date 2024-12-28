@@ -271,6 +271,51 @@ public class SpotifyService : ISpotifyService
     //    return playlists;
     //}
 
+    public async Task<string?> GetDeviceId(string token)
+    {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var response = await _client.GetAsync("https://api.spotify.com/v1/me/player/devices");
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception("Cihazlar alınırken bir hata oluştu.");
+        }
+
+        var responseContent = await response.Content.ReadAsStringAsync();
+        var jsonDocument = JsonDocument.Parse(responseContent);
+
+        var devices = jsonDocument.RootElement.GetProperty("devices").EnumerateArray();
+        foreach (var device in devices)
+        {
+            var isActive = device.GetProperty("is_active").GetBoolean();
+            if (isActive)
+            {
+                return device.GetProperty("id").GetString();
+            }
+        }
+
+        return null; // Eğer aktif cihaz yoksa null döndür
+    }
+
+    public async Task SetVolume(string token, int volume)
+    {
+        if (volume < 0 || volume > 100)
+            throw new ArgumentOutOfRangeException("Volume must be between 0 and 100.");
+
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var deviceId = await GetDeviceId(token);
+        if (deviceId == null)
+            throw new Exception("Aktif cihaz bulunamadı.");
+
+        var response = await _client.PutAsync($"https://api.spotify.com/v1/me/player/volume?volume_percent={volume}&device_id={deviceId}", null);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Error setting volume: {response.StatusCode}, {responseContent}");
+        }
+    }
 
 
 }

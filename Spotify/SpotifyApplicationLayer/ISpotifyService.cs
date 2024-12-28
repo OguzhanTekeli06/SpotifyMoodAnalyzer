@@ -24,6 +24,10 @@ public interface ISpotifyService
 
     Task<Song?> GetCurrentlyPlayingTrack(string token);
 
+    Task SetVolume(string token, int volumePercent);
+
+    Task<string?> GetDeviceId(string token);
+
    // Task<List<Playlist>> GetPlaylists(string token);
 
     //Task<List<Playlist>> GetPlaylists(string token);
