@@ -94,4 +94,12 @@
             </form>
         </div>
     </div>
+
+    <div class="currently-playing-section">
+        @if (ViewBag.CurrentlyPlayingMessage != null)
+        {
+            <p>@ViewBag.CurrentlyPlayingMessage</p>
+        }
+    </div>
+
 </div>

@@ -23,7 +23,7 @@ public class SpotifyService : ISpotifyService
 
     public string GetLoginUrl()
     {
-        return $"https://accounts.spotify.com/authorize?client_id={clientId}&response_type=code&redirect_uri={redirectUri}&scope=user-read-recently-played user-read-private user-read-email user-modify-playback-state";
+        return $"https://accounts.spotify.com/authorize?client_id={clientId}&response_type=code&redirect_uri={redirectUri}&scope=user-read-recently-played user-read-private user-read-email user-modify-playback-state user-read-currently-playing";
     }
     public async Task<string?> GetSpotifyToken(string code)
     {
@@ -199,6 +199,43 @@ public class SpotifyService : ISpotifyService
         }
     }
 
+    public async Task<Song?> GetCurrentlyPlayingTrack(string token)
+    {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var response = await _client.GetAsync("https://api.spotify.com/v1/me/player/currently-playing");
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception("Spotify API'sinden çalan şarkı alınırken bir hata oluştu.");
+        }
+
+        var responseContent = await response.Content.ReadAsStringAsync();
+
+        try
+        {
+            if (string.IsNullOrEmpty(responseContent) || responseContent == "null")
+            {
+                return null; // Eğer şu anda çalan bir şarkı yoksa, null dönebiliriz.
+            }
+
+            var jsonDocument = JsonDocument.Parse(responseContent);
+            var track = jsonDocument.RootElement.GetProperty("item");
+            var name = track.GetProperty("name").GetString();
+            var artist = track.GetProperty("artists")[0].GetProperty("name").GetString();
+
+            return new Song
+            {
+                Name = name,
+                Artist = artist
+            };
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("JSON parse hatası: " + ex.Message);
+            throw new Exception("Spotify'dan alınan veriler işlenirken bir hata oluştu.");
+        }
+    }
 
 
 

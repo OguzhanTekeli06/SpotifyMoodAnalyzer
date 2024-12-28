@@ -22,5 +22,6 @@ public interface ISpotifyService
 
     Task SkipToPrevious(string token);
 
+    Task<Song?> GetCurrentlyPlayingTrack(string token);
     //Task<List<dynamic>> GetRecentlyPlayed(string token);
 }

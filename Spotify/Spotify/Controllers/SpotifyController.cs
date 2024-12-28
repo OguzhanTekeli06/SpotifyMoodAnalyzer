@@ -42,11 +42,21 @@ namespace Spotify.Controllers
 
             try
             {
+                // Kullanıcı profilini al
                 var userProfile = await _spotifyService.GetUserProfile(token);
 
-                // Debugging: Profil verisini kontrol et
-                Console.WriteLine($"User Profile: {userProfile}");
+                // Şu anda çalan şarkıyı al
+                var currentlyPlayingTrack = await _spotifyService.GetCurrentlyPlayingTrack(token);
+                if (currentlyPlayingTrack == null)
+                {
+                    ViewBag.CurrentlyPlayingMessage = "Şu anda çalan bir şarkı yok.";
+                }
+                else
+                {
+                    ViewBag.CurrentlyPlayingMessage = $"Şu anda çalan şarkı: {currentlyPlayingTrack.Name} - {currentlyPlayingTrack.Artist}";
+                }
 
+                // Profil bilgilerini kontrol et
                 if (userProfile == null)
                 {
                     ViewBag.ErrorMessage = "Kullanıcı profili alınamadı.";
@@ -61,6 +71,7 @@ namespace Spotify.Controllers
                 return View();
             }
         }
+
 
         public IActionResult Login()
         {
@@ -200,6 +211,38 @@ namespace Spotify.Controllers
                 return View("Error");  // Hata olursa error sayfasına yönlendir
             }
         }
+
+        public async Task<IActionResult> GetCurrentlyPlayingTrack()
+        {
+            var token = HttpContext.Session.GetString("SpotifyToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login");
+            }
+
+            try
+            {
+                var currentlyPlayingTrack = await _spotifyService.GetCurrentlyPlayingTrack(token);
+
+                // Eğer şarkı yoksa kullanıcıya bilgi ver
+                if (currentlyPlayingTrack == null)
+                {
+                    ViewBag.CurrentlyPlayingMessage = "Şu anda çalan bir şarkı yok.";
+                }
+                else
+                {
+                    ViewBag.CurrentlyPlayingMessage = $"Şu anda çalan şarkı: {currentlyPlayingTrack.Name} - {currentlyPlayingTrack.Artist}";
+                }
+
+                return View("mainpage");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");
+            }
+        }
+
 
 
     }
