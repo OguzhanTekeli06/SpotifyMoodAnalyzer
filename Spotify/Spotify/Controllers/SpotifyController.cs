@@ -181,6 +181,25 @@ namespace Spotify.Controllers
             }
         }
 
+        public async Task<IActionResult> SkipToPrevious()
+        {
+            var token = HttpContext.Session.GetString("SpotifyToken");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login");
+            }
+
+            try
+            {
+                await _spotifyService.SkipToPrevious(token);
+                return RedirectToAction("mainpage");  // İşlem başarılıysa ana sayfaya yönlendir
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View("Error");  // Hata olursa error sayfasına yönlendir
+            }
+        }
 
 
     }

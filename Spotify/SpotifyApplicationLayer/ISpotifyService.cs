@@ -19,5 +19,8 @@ public interface ISpotifyService
     Task PausePlayback(string token);
 
     Task SkipToNext(string token);
+
+    Task SkipToPrevious(string token);
+
     //Task<List<dynamic>> GetRecentlyPlayed(string token);
 }

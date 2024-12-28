@@ -187,6 +187,18 @@ public class SpotifyService : ISpotifyService
         }
     }
 
+    public async Task SkipToPrevious(string token)
+    {
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var response = await _client.PostAsync("https://api.spotify.com/v1/me/player/previous", null);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception("Spotify API'sinden şarkı geçişi yapılırken bir hata oluştu.");
+        }
+    }
+
 
 
 
