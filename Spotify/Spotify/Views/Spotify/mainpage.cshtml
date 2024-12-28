@@ -16,20 +16,6 @@
         }
         else if (Model != null)
         {
-            <p><strong>Display Name:</strong> @Model.DisplayName</p>
-            <p><strong>Email:</strong> @Model.Email</p>
-            <p><strong>Country:</strong> @Model.Country</p>
-			<p><strong>Followers:</strong> @Model.Followers</p>
-			<p><strong>Product:</strong> @Model.Product</p>
-            <p><strong>Url:</strong> @Model.Uri</p>
-			<p><strong>Spotify ID:</strong> @Model.Id</p>
-
-
-
-		
-			
-            
-            
 
             @if (!string.IsNullOrEmpty(Model.ProfilePictureUrl))
             {
@@ -41,6 +27,23 @@
             {
                 <p>No profile picture available.</p>
             }
+
+            <p><strong>Display Name:</strong> @Model.DisplayName</p>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <p><strong>Country:</strong> @Model.Country</p>
+			<p><strong>Followers:</strong> @Model.Followers</p>
+			<p><strong>Product:</strong> @Model.Product</p>
+            //<p><strong>Url:</strong> @Model.Uri</p>
+			<p><strong>Spotify ID:</strong> @Model.Id</p>
+
+
+
+		
+			
+            
+            
+
+            
         }
         else
         {
@@ -48,10 +51,33 @@
         }
     </div>
 
-    <div class="action-section">
-        <p>Spotify'dan alınan verileri görmek için aşağıdaki butona tıklayın:</p>
-        <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
-            <button type="submit">Son Çalınanları Göster</button>
-        </form>
+    <div class="action-section-container">
+        <div class="action-section">
+            <p>Spotify'dan alınan verileri görmek için aşağıdaki butona tıklayın:</p>
+            <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
+                <button type="submit">Son Çalınanları Göster</button>
+            </form>
+        </div>
+
+        <div class="action-section">
+            <p>Duygu durum analizinizi görmek için tıklayın:</p>
+            <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
+                <button type="submit">Son Çalınanları Göster</button>
+            </form>
+        </div>
+
+        <div class="action-section">
+            <p>Şarkı öneri sistemi:</p>
+            <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
+                <button type="submit">Son Çalınanları Göster</button>
+            </form>
+        </div>
+
+        <div class="action-section">
+            <p>Şarkı öneri sistemi:</p>
+            <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
+                <button type="submit">Playlistlerim</button>
+            </form>
+        </div>
     </div>
 </div>
