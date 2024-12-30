@@ -1,0 +1,42 @@
+﻿/* RecentPlayed.css */
+body.vsc-initialized {
+    background-color: #000 !important; /* Arka plan rengini siyah yap */
+    color: #fff !important; /* Yazı rengini beyaz yap */
+}
+
+.recently-played {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #000; /* Arka planı siyah yap */
+    text-align: center;
+}
+
+h2 {
+    font-size: 3em;
+    color: #1db954; /* Spotify yeşili */
+    margin-top: 40px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #333;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.2em;
+}
+
+strong {
+    color: #1db954;
+    font-weight: bold;
+}
+
+p {
+    text-align: center;
+    color: #ccc;
+}

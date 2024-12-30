@@ -38,3 +38,8 @@
     font-size: 0.9rem;
     color: #FFFFFF; /* Beyaz yazı */
 }
+
+body {
+    margin: 0;
+    padding-top: 80px; /* Navbar yüksekliğine bağlı olarak boşluk ekle */
+}

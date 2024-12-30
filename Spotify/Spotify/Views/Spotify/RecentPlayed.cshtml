@@ -3,25 +3,33 @@
     var songs = Model as List<dynamic>;
 }
 
-<h2>Recently Played Songs</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Spotify</title>
+    <link href="~/css/RecentPlayed.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="recently-played">
+        <h2>Recently Played Songs</h2>
 
-@if (songs != null && songs.Count > 0)
-{
-    <ul>
-        @foreach (var song in songs)
+        @if (songs != null && songs.Count > 0)
         {
-            <li>
-                <strong>@song.Name</strong> - @song.Artist
-            </li>
+            <ul>
+                @foreach (var song in songs)
+                {
+                    <li>
+                        <strong>@song.Name</strong> - @song.Artist
+                    </li>
+                }
+            </ul>
         }
-    </ul>
-}
-else
-{
-    <p>No recently played songs found.</p>
-}
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+        else
+        {
+            <p>No recently played songs found.</p>
+        }
+    </div>
+</body>
+</html>

@@ -31,19 +31,19 @@
             <p><strong>Display Name:</strong> @Model.DisplayName</p>
             <p><strong>Email:</strong> @Model.Email</p>
             <p><strong>Country:</strong> @Model.Country</p>
-			<p><strong>Followers:</strong> @Model.Followers</p>
-			<p><strong>Product:</strong> @Model.Product</p>
+            <p><strong>Followers:</strong> @Model.Followers</p>
+            <p><strong>Product:</strong> @Model.Product</p>
             //<p><strong>Url:</strong> @Model.Uri</p>
-			<p><strong>Spotify ID:</strong> @Model.Id</p>
+            <p><strong>Spotify ID:</strong> @Model.Id</p>
 
 
 
-		
-			
-            
-            
 
-            
+
+
+
+
+
         }
         else
         {
@@ -51,106 +51,144 @@
         }
     </div>
 
-    <div class="action-section-container">
-        <div class="action-section">
-            <p>Spotify'dan alınan verileri görmek için aşağıdaki butona tıklayın:</p>
-            <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
-                <button type="submit">Son Çalınanları Göster</button>
-            </form>
-        </div>
+    <div class="second">
+        <div class="info">
+            <div class="action-section-container">
+                <div class="action-section1">
+                    <p>En son dinlenen şarkılar:</p>
+                    <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
+                        <button type="submit">Son Çalınanları Göster</button>
+                    </form>
+                </div>
 
-        <div class="action-section">
-            <p>Duygu durum analizinizi görmek için tıklayın:</p>
-            <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
-                <button type="submit">Son Çalınanları Göster</button>
-            </form>
-        </div>
+                <div class="action-section1">
+                    <p>Duygu durum analizinizi görmek için tıklayın:</p>
+                    <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
+                        <button type="submit">Duygu durum analizi</button>
+                    </form>
+                </div>
 
-        <div class="action-section">
-            <p>Şarkı öneri sistemi:</p>
-            <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
-                <button type="submit">Son Çalınanları Göster</button>
-            </form>
-        </div>
+                <div class="action-section1">
+                    <p>Şarkı öneri sistemi:</p>
+                    <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
+                        <button type="submit">Şarkı öneri sistemi</button>
+                    </form>
+                </div>
 
-        <div class="action-section">
-            <p>durdur:</p>
-            <form method="get" action="@Url.Action("PausePlayback", "Spotify")">
-                <button type="submit">Playlistlerim</button>
-            </form>
-        </div>
 
-        <div class="action-section">
-            <p>diğer şarkıya geç:</p>
-            <form method="get" action="@Url.Action("SkipToNext", "Spotify")">
-                <button type="submit">Playlistlerim</button>
-            </form>
-        </div>
+            </div>
 
-        <div class="action-section">
-            <p>şarkıyı geri al:</p>
-            <form method="get" action="@Url.Action("SkipToPrevious", "Spotify")">
-                <button type="submit">Playlistlerim</button>
-            </form>
-        </div>
-    </div>
 
-    <div class="currently-playing-section">
-        @if (ViewBag.CurrentlyPlayingMessage != null)
-        {
-            <p>@ViewBag.CurrentlyPlayingMessage</p>
-        }
-    </div>
 
-    
-    <div class="volume">
-        <h2>Ses Ayarı</h2>
+            <div class="volumeandcur">
 
-        <!-- Ses seviyesi çubuğu -->
-        <input type="range" id="volumeSlider" min="0" max="100" value="50" step="1" />
-        <p>Ses Seviyesi: <span id="volumeValue">50</span>%</p>
+                <div class="volume">
+                    <h2>Ses Ayarı</h2>
 
-        <!-- Set Volume Button -->
-        <button id="setVolumeButton" onclick="setVolume()">Ses Ayarla</button>
+                    <!-- Ses seviyesi çubuğu -->
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50" step="1" />
+                    <p>Ses Seviyesi: <span id="volumeValue">50</span>%</p>
 
-        <script>
-            // Ses seviyesini slider'dan al
-            var volumeSlider = document.getElementById("volumeSlider");
-            var volumeValue = document.getElementById("volumeValue");
+                    <!-- Set Volume Button -->
+                    <button id="setVolumeButton" onclick="setVolume()">Ses Ayarla</button>
 
-            // Slider'ın değerini her değiştirdiğinde güncelle
-            volumeSlider.oninput = function() {
-                volumeValue.textContent = volumeSlider.value;
-            }
+                    <script>
+                        // Ses seviyesini slider'dan al
+                        var volumeSlider = document.getElementById("volumeSlider");
+                        var volumeValue = document.getElementById("volumeValue");
 
-            // Ses seviyesini ayarlama işlemi
-                        function setVolume() {
-                var volume = volumeSlider.value;
+                        // Slider'ın değerini her değiştirdiğinde güncelle
+                        volumeSlider.oninput = function() {
+                            volumeValue.textContent = volumeSlider.value;
+                        }
 
-                // Volume modelini oluştur
-                var volumeModel = {
-                    volumePercent: volume
-                };
+                        // Ses seviyesini ayarlama işlemi
+                                    function setVolume() {
+                            var volume = volumeSlider.value;
 
-                fetch('/Spotify/SetVolume', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(volumeModel)
-                })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Ses seviyesi başarıyla ayarlandı.");
-                    } else {
-                        alert("Ses seviyesi ayarlanırken bir hata oluştu.");
+                            // Volume modelini oluştur
+                            var volumeModel = {
+                                volumePercent: volume
+                            };
+
+                            fetch('/Spotify/SetVolume', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(volumeModel)
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    alert("Ses seviyesi başarıyla ayarlandı.");
+                                } else {
+                                    alert("Ses seviyesi ayarlanırken bir hata oluştu.");
+                                }
+                            })
+                            .catch(error => {
+                                alert("Bir hata oluştu: " + error);
+                            });
+                        }
+                    </script>
+                </div>
+
+                <div class="currently-playing-section">
+                    @if (ViewBag.CurrentlyPlayingMessage != null)
+                    {
+                        <p>@ViewBag.CurrentlyPlayingMessage</p>
                     }
-                })
-                .catch(error => {
-                    alert("Bir hata oluştu: " + error);
-                });
-            }
-        </script>
+                </div>
+
+
+                
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="play">
+            
+
+            
+
+            <div class="action-section">
+               
+                <form method="get" action="@Url.Action("SkipToPrevious", "Spotify")">
+                    <button type="submit" class="play">
+                        <img src="/images/left.png" alt="Previous" />
+                    </button>
+                </form>
+            </div>
+
+            <div class="action-section">
+              
+                <form method="get" action="@Url.Action("PausePlayback", "Spotify")">
+                    <button type="submit" class="play">
+                        <img src="/images/pause.png" alt="Pause" />
+                    </button>
+                </form>
+            </div>
+
+            <div class="action-section">
+                
+                <form method="get" action="@Url.Action("SkipToNext", "Spotify")">
+                    <button type="submit" class="play">
+                        <img src="/images/right.png" alt="Next" />
+                    </button>
+                </form>
+            </div>
+            
+
+
+        </div>
     </div>
-    
+
+
+
+
+
 </div>
