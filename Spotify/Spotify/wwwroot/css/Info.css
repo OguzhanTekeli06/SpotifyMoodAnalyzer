@@ -1,0 +1,38 @@
+﻿body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem; /* Başlık boyutunu büyütür */
+    color: #ffffff; /* Başlığı tamamen beyaz yapar */
+}
+
+p {
+    font-size: 1.2rem; /* Paragraf yazı boyutunu artırır */
+    color: #fff; /* Paragraf yazısını daha beyaz yapar */
+    line-height: 1.8; /* Satır aralarını genişletir */
+}
+
+a {
+    color: #1db954; /* Linkler için yeşil renk */
+    text-decoration: none;
+    font-weight: bold; /* Linkleri kalın yapar */
+}
+
+    a:hover {
+        text-decoration: underline; /* Üzerine gelindiğinde altı çizili yapar */
+    }

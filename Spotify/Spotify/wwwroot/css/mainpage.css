@@ -67,9 +67,11 @@ volumeandcur {
     align-items: center; /* X ekseni boyunca ortala */
 }
 
-    .profile-section p {
-        margin: 10px 0;
-    }
+
+
+.profile-section p {
+    margin: 10px 0;
+}
 
 .profile-picture {
     display: flex;
@@ -98,6 +100,7 @@ volumeandcur {
     border: 1px;
     border-radius: inherit;
     margin-right: 20px;
+
 }
 
 .action-section1 {
@@ -119,17 +122,17 @@ volumeandcur {
     justify-content: flex-end; /* Form içeriğini sağa hizalar */
 }
 
-.action-section1 button {
-    width: 150px; /* Butonun genişliği px cinsinden sabitlenmiş */
-    height: 50px; /* Buton yüksekliği */
-    padding: 0; /* İçindeki yazıya göre büyümemesi için padding sıfırlanır */
-    text-align: center; /* Yazıları ortalar */
-    border: none; /* Kenarlıkları kaldırır */
-    background-color: #1DB954; /* Buton arka plan rengi */
-    color: white; /* Buton yazı rengi */
-    font-size: 16px; /* Buton yazı boyutu */
-    cursor: pointer; /* Buton üzerinde fareyi görünür hale getirir */
-}
+    .action-section1 button {
+        width: 150px; /* Butonun genişliği px cinsinden sabitlenmiş */
+        height: 50px; /* Buton yüksekliği */
+        padding: 0; /* İçindeki yazıya göre büyümemesi için padding sıfırlanır */
+        text-align: center; /* Yazıları ortalar */
+        border: none; /* Kenarlıkları kaldırır */
+        background-color: #81b71a; /* Buton arka plan rengi */
+        color: white; /* Buton yazı rengi */
+        font-size: 16px; /* Buton yazı boyutu */
+        cursor: pointer; /* Buton üzerinde fareyi görünür hale getirir */
+    }
 
 .action-section1 button:hover {
     background-color: #1ed760; /* Hover efekti */
@@ -198,4 +201,16 @@ footer {
     justify-content: center;
     align-items: center;
     font-size: 50px;
+   
+}
+
+#setVolumeButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #81b71a;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }

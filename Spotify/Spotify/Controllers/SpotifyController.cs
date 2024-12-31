@@ -15,9 +15,12 @@ namespace Spotify.Controllers
 
         private readonly HttpClient _client;
 
-        
 
-        
+
+        public IActionResult Info()
+        {
+            return View();
+        }
 
 
 
@@ -235,7 +238,7 @@ namespace Spotify.Controllers
                 }
                 else
                 {
-                    ViewBag.CurrentlyPlayingMessage = $"Şu anda çalan şarkı: {currentlyPlayingTrack.Name} - {currentlyPlayingTrack.Artist}";
+                    ViewBag.CurrentlyPlayingMessage = $"     {currentlyPlayingTrack.Name} - {currentlyPlayingTrack.Artist}";
                 }
 
                 return View("mainpage");

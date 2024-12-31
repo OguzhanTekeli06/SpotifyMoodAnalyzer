@@ -1,6 +1,59 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
+﻿
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<!-- CSS stilini burada yazıyoruz -->
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .content {
+        max-width: 80%;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1rem;
+        margin: 10px 0;
+    }
+
+    a {
+        color: #1DB954;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<div class="content">
+    <h1>Privacy Policy</h1>
+    <p>
+        Your privacy is important to us. This page outlines how we handle your data and protect your personal information while using our application.
+    </p>
+    <p>
+        - We do not collect or share any personal data without your consent.<br>
+        - All interactions with the application are secure and private.<br>
+        - Data used for mood analysis is processed locally and not shared with third parties.
+    </p>
+    <p>
+        For more detailed information about our privacy practices, please contact us at <a href="mailto:your-email@example.com">your-email@example.com</a>.
+    </p>
+</div>
