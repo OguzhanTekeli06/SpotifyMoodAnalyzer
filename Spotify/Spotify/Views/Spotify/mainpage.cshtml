@@ -5,6 +5,7 @@
 }
 
 <link href="~/css/mainpage.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 <div class="main-container">
     <div class="profile-section">
@@ -48,21 +49,19 @@
         <div class="info">
             <div class="action-section-container">
                 <div class="action-section1">
-                    <p>En son dinlenen şarkılar:</p>
                     <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
                         <button type="submit">Son Çalınanları Göster</button>
                     </form>
                 </div>
 
                 <div class="action-section1">
-                    <p>Duygu durum analizinizi görmek için tıklayın:</p>
+                    
                     <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
                         <button type="submit">Duygu durum analizi</button>
                     </form>
                 </div>
 
                 <div class="action-section1">
-                    <p>Şarkı öneri sistemi:</p>
                     <form method="get" action="@Url.Action("GetRecentlyPlayed", "Spotify")">
                         <button type="submit">Şarkı öneri sistemi</button>
                     </form>
@@ -76,11 +75,12 @@
             <div class="volumeandcur">
 
                 <div class="volume">
-                    <h2>Ses Ayarı</h2>
 
+                    <img src="~/images/SES2.png" style="width: 38px; height: 38px;" />
+                       
                     <!-- Ses seviyesi çubuğu -->
                     <input type="range" id="volumeSlider" min="0" max="100" value="50" step="1" />
-                    <p>Ses Seviyesi: <span id="volumeValue">50</span>%</p>
+                    <p> <span id="volumeValue">50</span>%</p>
 
                     <!-- Set Volume Button -->
                     <button id="setVolumeButton" onclick="setVolume()">Ses Ayarla</button>

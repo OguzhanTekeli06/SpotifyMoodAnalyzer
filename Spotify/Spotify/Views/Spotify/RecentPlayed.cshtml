@@ -9,7 +9,59 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Spotify</title>
-    <link href="~/css/RecentPlayed.css" rel="stylesheet" />
+    <style>
+        /* Body - Page Setup */
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Recently Played Container */
+        .recently-played {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Heading Style */
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* List Style */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        /* Spotify Green for Song Name */
+        strong {
+            color: #1db954; /* Spotify green */
+        }
+
+        /* No Songs Message */
+        p {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="recently-played">

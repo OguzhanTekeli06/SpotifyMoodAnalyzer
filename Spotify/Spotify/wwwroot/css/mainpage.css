@@ -87,7 +87,7 @@ volumeandcur {
 
 .action-section-container {
     display: flex;
-    flex-direction: column; /* Üst üste dizilmesini sağlar */
+    flex-direction: row; /* Üst üste dizilmesini sağlar */
     
 }
 
@@ -100,7 +100,7 @@ volumeandcur {
     border: 1px;
     border-radius: inherit;
     margin-right: 20px;
-
+    /*bunlar play tuşları*/
 }
 
 .action-section1 {
@@ -113,6 +113,8 @@ volumeandcur {
     border-radius: inherit;
     margin-right: 20px;
     margin-bottom: 30px;
+    width: 200px; /* Genişlik */
+    height: 200px; /* Yükseklik */
 }
 
 /* Butonları eşit büyüklükte yapmak için */
@@ -120,23 +122,25 @@ volumeandcur {
     display: flex;
     flex-grow: 1; /* Formu genişletir, tüm butonları eşit yapar */
     justify-content: flex-end; /* Form içeriğini sağa hizalar */
+
 }
 
     .action-section1 button {
         width: 150px; /* Butonun genişliği px cinsinden sabitlenmiş */
-        height: 50px; /* Buton yüksekliği */
+        height: 150px; /* Buton yüksekliği */
         padding: 0; /* İçindeki yazıya göre büyümemesi için padding sıfırlanır */
         text-align: center; /* Yazıları ortalar */
         border: none; /* Kenarlıkları kaldırır */
-        background-color: #81b71a; /* Buton arka plan rengi */
+        background-color: #006400; /* Buton arka plan rengi */
         color: white; /* Buton yazı rengi */
         font-size: 16px; /* Buton yazı boyutu */
         cursor: pointer; /* Buton üzerinde fareyi görünür hale getirir */
+        border-radius: 25px;
     }
 
-.action-section1 button:hover {
-    background-color: #1ed760; /* Hover efekti */
-}
+        .action-section1 button:hover {
+            background-color: #008000; /* Hover efekti */
+        }
 
 
 button {
@@ -171,9 +175,9 @@ button {
 
 
 
-    button:hover {
-        background-color: #14833b;
-    }
+button:hover {
+    background-color: ##006400;
+}
 
 button img {
         width: 70px; /* İkonun genişliği */
@@ -187,7 +191,21 @@ button img {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom:30px;
 }
+
+.volume img{
+    margin-right: 20px
+}
+
+    .volume input[type="range"] {
+        /*width: 100%; /* Çubuğun genişliğini artırabilirsiniz */
+        /*max-width: 300px; /* Çubuğun genişliğini sınırlandırabilirsiniz */
+        margin-right: 20px;
+        background: #ddd;
+    }
+
+        
 
 footer {
     display: none;
@@ -208,9 +226,14 @@ footer {
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #81b71a;
+    background-color: #006400;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-left:20px;
 }
+
+    #setVolumeButton:hover {
+        background-color: #008000;
+    }
